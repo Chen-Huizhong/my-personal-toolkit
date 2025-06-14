@@ -8,17 +8,13 @@ Some convenient function in MATLAB.
 
 ---
 
-
-
 ## Vim
 
 My personal Vim configuration file `.vimrc` there.
 
 ---
 
-
-
-# Python
+## Python
 
 Some small and easy but interesting Python program.
 
