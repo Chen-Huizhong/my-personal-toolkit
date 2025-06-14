@@ -6,13 +6,9 @@ Some widgets that I could utilize when coding or some interesting widgets I coul
 
 Some convenient function in MATLAB.
 
----
-
 ## Vim
 
 My personal Vim configuration file `.vimrc` there.
-
----
 
 ## Python
 
