@@ -1,3 +1,14 @@
+"""
+A program to help play minesweeper faster. 
+
+Code by Chen Huizhong, 2025-06-14.
+Email: hzchen0035@qq.com
+
+TODO:
+- The feature for solving minesweeper problem.
+"""
+
+
 import cv2
 import numpy as np
 import pygetwindow as gw
