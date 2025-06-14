@@ -1,0 +1,11 @@
+numpy>=1.21.0
+opencv-python>=4.5.0
+pyautogui>=0.9.0
+pygetwindow>=0.0.1
+pywinauto>=0.6.0
+
+# Windows
+pywin32>=300 ; sys_platform == 'win32'
+
+# GUI
+tkinter>=8.6 ; sys_platform == 'win32'
