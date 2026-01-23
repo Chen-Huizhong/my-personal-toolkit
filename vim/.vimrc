@@ -28,7 +28,7 @@ set cursorline                      " Highlight current line
 set cursorcolumn                    " Highlight current column
 highlight CursorLine   ctermbg=237 guibg=#3a3a3a cterm=NONE gui=NONE
 highlight CursorColumn ctermbg=237 guibg=#3a3a3a cterm=NONE gui=NONE
-set textwidth=80                    " Set text width
+set textwidth=81                    " Set text width
 set wrap                            " Enable line wrapping
 set linebreak                       " Break lines at convenient points
 set wrapmargin=2                    " Margin for wrapping
@@ -40,7 +40,7 @@ set showcmd                         " Show command in bottom bar
 set showmode                        " Show mode status in bottom bar
 set showmatch                       " Highlight matching brackets
 set t_Co=256                        " 256 Colors
-set colorcolumn=80                  " highlight specific columns
+set colorcolumn=81                  " highlight specific columns
 highlight ColorColumn ctermbg=lightcyan guibg=blue
 " open new split panes to right and bottom, which feels more natural
 set splitbelow
