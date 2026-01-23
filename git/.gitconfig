@@ -1,0 +1,40 @@
+[user]
+	name = Huizhong CHEN
+	email = hzchen0035@qq.com
+[core]
+	editor = vim
+	pager = less -FXR
+	autocrlf = false
+	quotepath = false
+	fileMode = false
+[credential]
+	helper = store
+[push]
+	default = simple
+[color]
+	ui = auto
+[alias]
+	lg1 = log --all --graph --decorate
+	lg = log --all --graph --decorate --oneline
+	st = status -sb
+	ad = add .
+	fa = fetch --all
+	cm = commit
+[init]
+	defaultBranch = main
+[merge]
+	ff = true
+[rebase]
+	autoStash = true
+[status]
+	short = false
+[commit]
+	verbose = true
+
+[url "https://github.com/"]
+	insteadOf = git://github.com/
+
+
+# Allow local customizations in the .gitconfig_local file
+[include]
+	path = ~/.gitconfig_local

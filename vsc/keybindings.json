@@ -1,0 +1,28 @@
+// 将键绑定放在此文件中以覆盖默认值
+[
+    {
+        "key": "ctrl+shift+alt+u",
+        "command": "editor.action.transformToUppercase",
+        "when": "isWindows",
+    },
+    {
+        "key": "ctrl+alt+u",
+        "command": "editor.action.transformToLowercase",
+        "when": "isWindows",
+    },
+    {
+        "key": "ctrl+e",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "isWindows",
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.terminal.focus",
+        "when": "isWindows",
+    },
+    {
+        "key": "cmd+e",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "isMac",
+    }
+]
