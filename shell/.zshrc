@@ -119,12 +119,13 @@ fi
 
 # if Nvim is available, use Nvim instead of Vim.
 if command -v nvim >/dev/null 2>&1; then
-  export EDITOR="nvim"
-  alias nv="nvim"
-else
-  export EDITOR="vim"
+    export EDITOR="nvim"
+    alias nv="nvim"
 fi
 
+if command -v lazygit >/dev/null 2>&1; then
+    alias lg="lazygit"
+fi
 
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#666666,bg=#222222"
