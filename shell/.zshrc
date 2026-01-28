@@ -39,13 +39,13 @@ zstyle ':omz:update' frequency 13
 # DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
-DISABLE_LS_COLORS="true"
+DISABLE_LS_COLORS="false"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -80,6 +80,7 @@ plugins=(
     zsh-autosuggestions
     extract
     z
+    command-not-found
     colored-man-pages
 )
 
@@ -115,6 +116,15 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# if Nvim is available, use Nvim instead of Vim.
+if command -v nvim >/dev/null 2>&1; then
+  export EDITOR="nvim"
+  alias nv="nvim"
+else
+  export EDITOR="vim"
+fi
+
 
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#666666,bg=#222222"
