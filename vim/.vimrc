@@ -15,6 +15,7 @@ set mouse+=a                        " Mouse support (uncomment to enable)
 "set selection=exclusive            " Selection mode (uncomment to enable)
 set nojoinspaces                    " Suppress inserting two spaces between sentences
 set backspace=indent,eol,start      " Backspace over anything
+set whichwrap+=<,>,h,l
 set nofoldenable                    " Disable folding by default
 let $LANG='en'                      " Set language
 set langmenu=en                     " Set menu language
@@ -39,6 +40,7 @@ set cmdheight=1                     " Command line height
 set showcmd                         " Show command in bottom bar
 set showmode                        " Show mode status in bottom bar
 set showmatch                       " Highlight matching brackets
+set matchtime=2
 set t_Co=256                        " 256 Colors
 set colorcolumn=81                  " highlight specific columns
 highlight ColorColumn ctermbg=lightcyan guibg=blue
@@ -82,6 +84,8 @@ set noerrorbells visualbell t_vb=   " Disable audible bell
 " History and completion
 set history=1000                    " Command history size
 set autoread                        " Auto read files changed outside
+set autowrite
+set hidden
 set wildmenu                        " Enhanced command-line completion
 set wildmode=longest:list,full
 
@@ -216,10 +220,19 @@ set statusline=%!MyStatusline()
 " The installation of vim-plut:
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 call plug#begin('~/.vim/plugged')           " Where the plugins install
-Plug 'easymotion/vim-easymotion'            " EasyMotion
-Plug 'tpope/vim-surround'                   " Vim-Surround
+
+    Plug 'easymotion/vim-easymotion'            " EasyMotion
+    Plug 'tpope/vim-surround'                   " Vim-Surround
+"    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"    Plug 'vim-airline/vim-airline'
+"    Plug 'vim-airline/vim-airline-themes'
+
 call plug#end()
+
+" Configuration for vim-airline
+"let g:airline_theme='simple'
 
 " Configuration for EasyMotion
 " installation: 
@@ -278,6 +291,7 @@ map  <Leader>h <Plug>(easymotion-linebackward)
 " are also available.
 "The difference is character count required for search.
 "For example, `<leader><leader> 2s <char><char>` requires two characters, and search by two characters.
+"For example, `<leader><leader> 3s <char><char>` requires three characters, and search by three characters.
 "This mapping is not a standard mapping, so it is recommended to use your custom mapping.
 
 " Configuration for Vim-Surround

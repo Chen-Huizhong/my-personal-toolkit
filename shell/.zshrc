@@ -80,7 +80,6 @@ plugins=(
     zsh-autosuggestions
     extract
     z
-    command-not-found
     colored-man-pages
 )
 

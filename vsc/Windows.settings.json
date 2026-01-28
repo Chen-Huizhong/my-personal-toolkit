@@ -2,22 +2,25 @@
     // This is my configurations of VSCode for Windows Enviornment.
     // Note that some extensions are needed.
     // Some paths should be costumized.
-    // by Huizhong Chen, 2025-12-26. 
-    
+    // by Huizhong Chen, 2025-12-26.
+
     "telemetry.telemetryLevel": "off",
 
     // ====configuration of security====
     "security.workspace.trust.enabled": false,
     "security.workspace.trust.untrustedFiles": "open",
-    
-    
+
+
     // ====configuration of workbench====
+    "files.autoSave": "afterDelay",
+    "files.hotExit": "onExit",
+    "files.trimTrailingWhitespace": true,
     "workbench.colorTheme": "Solarized Light",
     "workbench.settings.applyToAllProfiles": [
         "editor.fontSize"
     ],
     "workbench.tips.enabled": false,
-    "workbench.editor.wrapTabs": false,
+    "workbench.editor.wrapTabs": true,
     "workbench.tree.indent": 8,
     "workbench.secondarySideBar.showLabels": true,
     "workbench.startupEditor": "none",
@@ -56,15 +59,16 @@
         "tree.inactiveIndentGuidesStroke": "#05ef3c30",
     },
     "workbench.externalBrowser": "chrome",
+    "workbench.reduceMotion": "on",
 
-    
+
     // ====configuration of window====
     "window.titleBarStyle": "custom",
     "window.commandCenter": false,
     "window.restoreWindows": "none",
     "window.title": "${dirty}${folderPath}${separator}${activeEditorShort}",
-    
-    
+
+
     // ====configuration of editor====
     "editor.acceptSuggestionOnEnter": "off",
     "editor.accessibilitySupport": "off",
@@ -76,7 +80,7 @@
     "editor.scrollbar.horizontal": "hidden",
     "editor.scrollbar.vertical": "visible",
     "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
-    "editor.rulers": [80,100],
+    "editor.rulers": [80],
     "editor.minimap.enabled": false,
     "editor.minimap.showSlider": "always",
     "editor.minimap.size": "fill",
@@ -84,11 +88,11 @@
     "editor.minimap.renderCharacters": false,
     "editor.fontSize": 16,
     "editor.wordWrap": "on",
-    "editor.wordWrapColumn": 100,
+    "editor.wordWrapColumn": 80,
     "editor.lineNumbers": "on",
     "editor.guides.indentation": true,
     "editor.guides.bracketPairs": true,
-    "editor.minimap.maxColumn": 100,
+    "editor.minimap.maxColumn": 80,
     "editor.bracketPairColorization.enabled": true,
     "editor.unicodeHighlight.nonBasicASCII": false,
     "editor.fontFamily": "'Maple Mono Normal NL NF CN Regular', 'JetBrainsMono Nerd Font', Consolas, 'Courier New', monospace",
@@ -116,10 +120,11 @@
     "editor.codeLens": true,
     "editor.largeFileOptimizations": true,
     "editor.semanticHighlighting.enabled": true,
+    "editor.formatOnPaste": true,
     "diffEditor.ignoreTrimWhitespace": false,
     "diffEditor.hideUnchangedRegions.enabled": true,
-    
-    
+
+
     // ====Configuration of explorer====
     "explorer.autoReveal": false,
     "explorer.decorations.colors": true,
@@ -175,8 +180,8 @@
             ]
         }
     },
-    
-    
+
+
     // ====configuration of code-runner====
     "code-runner.runInTerminal": true,
     "code-runner.saveFileBeforeRun": true,
@@ -279,15 +284,15 @@
         ".pkl": "cd $dir && pkl eval -f yaml $fileName -o $fileNameWithoutExt.yaml",
         ".gleam": "gleam run -m $fileNameWithoutExt"
     },
-    
-    
+
+
     // ====configuration of hexeditor====
     "hexeditor.columnWidth": 16,
     "hexeditor.showDecodedText": false,
     "hexeditor.defaultEndianness": "little",
     "hexeditor.inspectorType": "aside",
-    
-    
+
+
     // ====configuration of latex====
     "latex-workshop.latex.watch.files.ignore": [
         "**/*.bbx",
@@ -510,8 +515,8 @@
     "latex-workshop.latex.recipe.default": "lastUsed",
     "latex-workshop.latex.autoClean.run": "onBuilt",
     "latex-workshop.latex.autoBuild.run": "onSave",
-    
-    
+
+
     // ====Configuration of projectManager====
     "projectManager.openInNewWindowWhenClickingInStatusBar": true,
     "projectManager.tags": [
@@ -521,8 +526,8 @@
         "GitHub",
     ],
     "projectManager.filterOnFullPath": true,
-    
-    
+
+
     // ====confugration of notebook====
     "notebook.editorOptionsCustomizations": {
         "editor.tabSize": 4,
@@ -544,14 +549,18 @@
     "notebook.stickyScroll.mode": "indented",
     "notebook.insertToolbarLocation": "betweenCells",
 
-    
-    
+
+
     // ====configuration of python====
+    "python.terminal.activateEnvironment": false,
     "python.createEnvironment.trigger": "off",
     "python.analysis.autoFormatStrings": true,
     "python.analysis.autoImportCompletions": true,
     "python.languageServer": "Pylance",
+    "python.analysis.typeCheckingMode": "off",
     "python.analysis.diagnosticMode": "workspace",
+    "python-envs.terminal.autoActivationType": "off",
+    "python-envs.terminal.showActivateButton": false,
     "python-envs.defaultEnvManager": "ms-python.python:conda",
     "python-envs.defaultPackageManager": "ms-python.python:conda",
     "python-envs.pythonProjects": [],
@@ -563,27 +572,28 @@
         },
         "editor.defaultFormatter": "charliermarsh.ruff"
     },
-    
-    
+
+
     // ====configuration of ruff====
+    "ruff.enable": true,
     "ruff.nativeServer": "on",
-    "ruff.lineLength": 100,
-    
-    
+    "ruff.lineLength": 80,
+
+
     // ====configuration of autoDocstring====
     "autoDocstring.docstringFormat": "numpy",
     "autoDocstring.includeName": true,
     "autoDocstring.startOnNewLine": true,
-    
-    
+
+
     // ====configuation of git====
     "git.decorations.enabled": true,
     "git.openRepositoryInParentFolders": "never",
     "git.autorefresh": true,
     "git.enableSmartCommit": false,
     "git.useEditorAsCommitInput": true,
-    
-    
+
+
     "material-icon-theme.activeIconPack": "angular_ngrx",
     "settingsSync.ignoredExtensions": [
         "ms-vscode-remote.remote-wsl",
@@ -617,6 +627,9 @@
     "python.defaultInterpreterPath": "c:\\Users\\Lenovo\\miniconda3",
     "latex-workshop.formatting.latexindent.path": "C:\\Users\\Lenovo\\Documents\\latexindent.exe",
     "latex-workshop.view.pdf.external.viewer.command": "C:\\Users\\Lenovo\\AppData\\Local\\SumatraPDF\\SumatraPDF.exe",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
 
 
 }
