@@ -20,6 +20,7 @@
 	ad = add .
 	fa = fetch --all
 	cm = commit
+	bv = branch -vv
 [init]
 	defaultBranch = main
 [merge]
