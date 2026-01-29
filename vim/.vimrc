@@ -26,10 +26,10 @@ set number                          " Show line numbers
 set relativenumber                  " Show relative line numbers
 set ruler                           " Show ruler
 set cursorline                      " Highlight current line
-set cursorcolumn                    " Highlight current column
+set nocursorcolumn                    " Highlight current column
 highlight CursorLine   ctermbg=237 guibg=#3a3a3a cterm=NONE gui=NONE
 highlight CursorColumn ctermbg=237 guibg=#3a3a3a cterm=NONE gui=NONE
-set textwidth=81                    " Set text width
+set textwidth=80                    " Set text width
 set wrap                            " Enable line wrapping
 set linebreak                       " Break lines at convenient points
 set wrapmargin=2                    " Margin for wrapping
@@ -91,6 +91,7 @@ set wildmode=longest:list,full
 
 " List characters
 set listchars=tab:>-,nbsp:~,trail:∙ " set list to see tabs and non-breakable spaces
+set listchars+=eol:¶
 set list
 
 " Filetype and syntax
@@ -133,6 +134,13 @@ inoremap <Left>  <ESC>:echoe "Use h"<CR>
 inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
+" for moving among windows
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+" lazy man
+inoremap jj <ESC>l
 
 " Settings of leader key
 nnoremap <space> <nop>
@@ -143,159 +151,142 @@ nnoremap <Leader>, :bprevious<CR>
 nnoremap <Leader>. :bnext<CR>
 
 
-" Customized Statusline
-function! HighlightSearch()
-  if &hls
-    return 'H'
-  else
-    return ''
-  endif
-endfunction
-
-" Costumized Colors
-hi User1 guifg=#ffdad8 guibg=#880c0e ctermfg=224 ctermbg=88
-hi User2 guifg=#000000 guibg=#F4905C ctermfg=16  ctermbg=173
-hi User3 guifg=#292b00 guibg=#f4f597 ctermfg=58  ctermbg=229
-hi User4 guifg=#112605 guibg=#aefe7B ctermfg=22  ctermbg=155
-hi User5 guifg=#051d00 guibg=#7dcc7d ctermfg=22  ctermbg=114
-hi User7 guifg=#ffffff guibg=#880c0e ctermfg=231 ctermbg=88  cterm=bold gui=bold
-hi User8 guifg=#ffffff guibg=#5b7fbb ctermfg=231 ctermbg=67
-hi User9 guifg=#ffffff guibg=#810085 ctermfg=231 ctermbg=90
-hi User0 guifg=#ffffff guibg=#094afe ctermfg=231 ctermbg=27
-hi User6 guifg=#ffffff guibg=#005f00 ctermfg=231 ctermbg=22   " NORMAL
-hi User10 guifg=#000000 guibg=#afff00 ctermfg=16  ctermbg=154 " INSERT
-hi User11 guifg=#ffffff guibg=#5f00af ctermfg=231 ctermbg=55  " VISUAL
-hi User12 guifg=#ffffff guibg=#870000 ctermfg=231 ctermbg=88  " REPLACE
-
-" Costumized Statusline
-function! StatuslineMode()
-  let l:m = mode()
-  if l:m ==# 'n'
-    return '%#User6# NORMAL '
-  elseif l:m ==# 'i'
-    return '%#User10# INSERT '
-  elseif l:m ==# 'R'
-    return '%#User12# REPLACE '
-  elseif l:m ==# 'c'
-    return '%#User6# COMMAND '
-  elseif l:m ==# 'v' || l:m ==# 'V' || l:m ==# "\<C-v>"
-    return '%#User11# VISUAL '
-  else
-    return '%#User6# '.l:m.' '
-  endif
-endfunction
-
-function! StatusEnc()
-  return &fenc != '' ? &fenc : &enc
-endfunction
-
-function! StatusBom()
-  return &bomb ? ',BOM' : ''
-endfunction
-
-function! StatusSpell()
-  return &spelllang . HighlightSearch()
-endfunction
-
-function! MyStatusline()
-  return StatuslineMode()
-        \ . '[%n]'
-        \ . ' %<%F%m%r%w  %='
-        \ . '%8* R:%l/%L'
-        \ . '%8* C:%02c '
-        \ . '%0* %P %y '
-"        \ . '%2*%y'
-"        \ . '%8* R:%l/%L (%02p%%) '
-"        \ . '%5*' . StatusSpell()
-"        \ . '%3*' . StatusEnc()
-"        \ . '%3*' . StatusBom()
-"        \ . '%4*' . &ff
-endfunction
-
-set statusline=%!MyStatusline()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Customized Statusline (deprecated after vim-airline)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" function! HighlightSearch()
+"   if &hls
+"     return 'H'
+"   else
+"     return ''
+"   endif
+" endfunction
+" 
+" " Costumized Colors
+" hi User1 guifg=#ffdad8 guibg=#880c0e ctermfg=224 ctermbg=88
+" hi User2 guifg=#000000 guibg=#F4905C ctermfg=16  ctermbg=173
+" hi User3 guifg=#292b00 guibg=#f4f597 ctermfg=58  ctermbg=229
+" hi User4 guifg=#112605 guibg=#aefe7B ctermfg=22  ctermbg=155
+" hi User5 guifg=#051d00 guibg=#7dcc7d ctermfg=22  ctermbg=114
+" hi User7 guifg=#ffffff guibg=#880c0e ctermfg=231 ctermbg=88  cterm=bold gui=bold
+" hi User8 guifg=#ffffff guibg=#5b7fbb ctermfg=231 ctermbg=67
+" hi User9 guifg=#ffffff guibg=#810085 ctermfg=231 ctermbg=90
+" hi User0 guifg=#ffffff guibg=#094afe ctermfg=231 ctermbg=27
+" hi User6 guifg=#ffffff guibg=#005f00 ctermfg=231 ctermbg=22   " NORMAL
+" hi User10 guifg=#000000 guibg=#afff00 ctermfg=16  ctermbg=154 " INSERT
+" hi User11 guifg=#ffffff guibg=#5f00af ctermfg=231 ctermbg=55  " VISUAL
+" hi User12 guifg=#ffffff guibg=#870000 ctermfg=231 ctermbg=88  " REPLACE
+" 
+" " Costumized Statusline
+" function! StatuslineMode()
+"   let l:m = mode()
+"   if l:m ==# 'n'
+"     return '%#User6# NORMAL '
+"   elseif l:m ==# 'i'
+"     return '%#User10# INSERT '
+"   elseif l:m ==# 'R'
+"     return '%#User12# REPLACE '
+"   elseif l:m ==# 'c'
+"     return '%#User6# COMMAND '
+"   elseif l:m ==# 'v' || l:m ==# 'V' || l:m ==# "\<C-v>"
+"     return '%#User11# VISUAL '
+"   else
+"     return '%#User6# '.l:m.' '
+"   endif
+" endfunction
+" 
+" function! StatusEnc()
+"   return &fenc != '' ? &fenc : &enc
+" endfunction
+" 
+" function! StatusBom()
+"   return &bomb ? ',BOM' : ''
+" endfunction
+" 
+" function! StatusSpell()
+"   return &spelllang . HighlightSearch()
+" endfunction
+" 
+" function! MyStatusline()
+"   return StatuslineMode()
+"         \ . '[%n]'
+"         \ . ' %<%F%m%r%w  %='
+"         \ . '%8* R:%l/%L'
+"         \ . '%8* C:%02c '
+"         \ . '%0* %P %y '
+" "        \ . '%2*%y'
+" "        \ . '%8* R:%l/%L (%02p%%) '
+" "        \ . '%5*' . StatusSpell()
+" "        \ . '%3*' . StatusEnc()
+" "        \ . '%3*' . StatusBom()
+" "        \ . '%4*' . &ff
+" endfunction
+" 
+" set statusline=%!MyStatusline()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The configurations of plugins start here.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" The installation of vim-plut:
+" The installation of vim-plug:
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" 
+" NOTE: Don't forget to run `:PlugInstall` after you add a plugin.
+" NOTE: And don't forget to run `:PlugClean` after delete one.
 
 call plug#begin('~/.vim/plugged')           " Where the plugins install
 
-    Plug 'easymotion/vim-easymotion'            " EasyMotion
-    Plug 'tpope/vim-surround'                   " Vim-Surround
-"    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"    Plug 'vim-airline/vim-airline'
-"    Plug 'vim-airline/vim-airline-themes'
+    Plug 'easymotion/vim-easymotion'                    " EasyMotion
+    Plug 'tpope/vim-surround'                           " Vim-Surround
+    Plug 'mhinz/vim-signify', { 'tag': 'legacy' }       " vim-signify
+    Plug 'preservim/nerdtree'
+    Plug 'Xuyuanp/nerdtree-git-plugin'                  " Git status flag
+    Plug 'ryanoasis/vim-devicons'                       " File icon
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'      " File icon color
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
-" Configuration for vim-airline
-"let g:airline_theme='simple'
+" Configuration for NERDTree
+nnoremap <C-t> :NERDTreeToggle<CR>
+autocmd StdinReadPre * let s:std_in=1
+" Start NERDTree. If a file is specified, move the cursor to its window.
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+" Start NERDTree when Vim starts with a directory argument
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Configuration for EasyMotion
-" installation: 
-" git clone https://github.com/easymotion/vim-easymotion.git ~/.vim/pack/plugins/start/vim-easymotion
-let g:EasyMotion = "asdfghjklqwertyuiopzxcvbnm"
-" <Leader>f{char} to move to {char}
-map  <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
-" <Leader>s{char}{char} to move to {char}{char}
-nmap <Leader>s <Plug>(easymotion-overwin-f2)
-" Move to line
-map  <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
-" Move to word
-map  <Leader>w <Plug>(easymotion-w)
-map  <Leader>W <Plug>(easymotion-b)
+let g:EasyMotion_keys = "asdfghjklqwertyuiopzxcvbnm"
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_do_mapping = 0
+" EasyMotion key mappings
 " Move hjkl
 map  <Leader>l <Plug>(easymotion-lineforward)
 map  <Leader>j <Plug>(easymotion-j)
 map  <Leader>k <Plug>(easymotion-k)
 map  <Leader>h <Plug>(easymotion-linebackward)
+" 1-character search 
+nmap <Leader>s <Plug>(easymotion-s)
+" 2-character search 
+nmap <leader><leader>s <Plug>(easymotion-s2)
+" Word motions
+nmap <leader>w <Plug>(easymotion-w)
+nmap <leader>b <Plug>(easymotion-b)
+" Inline character motions
+nmap <leader>f <Plug>(easymotion-fl)
+nmap <leader>F <Plug>(easymotion-Fl)
 
-" TODO:
-" Reference key map of vscode-vim extension:
-" Once easymotion is active, initiate motions using the following commands.
-" After you initiate the motion, text decorators/markers will be displayed
-" and you can press the keys displayed to jump to that position.
-" `leader` is configurable and is `\` by default.
-"
-"| Motion Command                      | Description                                        |
-"| ----------------------------------- | -------------------------------------------------- |
-"| `<leader><leader> s <char>`         | Search character                                   |
-"| `<leader><leader> f <char>`         | Find character forwards                            |
-"| `<leader><leader> F <char>`         | Find character backwards                           |
-"| `<leader><leader> t <char>`         | Til character forwards                             |
-"| `<leader><leader> T <char>`         | Til character backwards                            |
-"| `<leader><leader> w`                | Start of word forwards                             |
-"| `<leader><leader> b`                | Start of word backwards                            |
-"| `<leader><leader> l`                | Matches beginning & ending of word, camelCase,
-"                                        after `_`, and after `#` forwards |
-"| `<leader><leader> h`                | Matches beginning & ending of word, camelCase,
-"                                        after `_`, and after `#` backwards |
-"| `<leader><leader> e`                | End of word forwards                               |
-"| `<leader><leader> ge`               | End of word backwards                              |
-"| `<leader><leader> j`                | Start of line forwards                             |
-"| `<leader><leader> k`                | Start of line backwards                            |
-"| `<leader><leader> / <char>... <CR>` | Search n-character                                 |
-"| `<leader><leader><leader> bdt`      | Til character                                      |
-"| `<leader><leader><leader> bdw`      | Start of word                                      |
-"| `<leader><leader><leader> bde`      | End of word                                        |
-"| `<leader><leader><leader> bdjk`     | Start of line                                      |
-"| `<leader><leader><leader> j`        | JumpToAnywhere motion; default behavior matches
-"                                        beginning & ending of word, camelCase, after `_` and after `#` |
-"
-"`<leader><leader> (2s|2f|2F|2t|2T) <char><char>` and `<leader><leader><leader> bd2t <char>char>` 
-" are also available.
-"The difference is character count required for search.
-"For example, `<leader><leader> 2s <char><char>` requires two characters, and search by two characters.
-"For example, `<leader><leader> 3s <char><char>` requires three characters, and search by three characters.
-"This mapping is not a standard mapping, so it is recommended to use your custom mapping.
+" Configuration for vim-airline
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1          " Enable tab line
+let g:airline_theme='dark'                         " Use this theme
 
-" Configuration for Vim-Surround
-" installation:
-" git clone https://tpope.io/vim/surround.git ~/.vim/pack/tpope/start/surround
-" vim -u NONE -c "helptags surround/doc" -c q
+" Configuration for vim's colorscheme
+colorscheme wildcharm
