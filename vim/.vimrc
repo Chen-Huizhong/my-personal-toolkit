@@ -167,7 +167,8 @@ nnoremap k gk
 nnoremap gk k
 nnoremap j gj
 nnoremap gj j
-
+" Map `;` to `:` to avoid pressing Shift
+nnoremap ; :
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Customized Statusline (deprecated after vim-airline)
@@ -305,6 +306,7 @@ nmap <leader>F <Plug>(easymotion-Fl)
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1          " Enable tab line
 let g:airline_theme='dark'                         " Use this theme
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " Configuration for vim's colorscheme
 " If you want to use a customized colorscheme,
