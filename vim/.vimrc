@@ -303,7 +303,7 @@ let g:airline#extensions#tabline#enabled=1          " Enable tab line
 let g:airline_theme='dark'                         " Use this theme
 
 " Configuration for vim's colorscheme
-colorscheme wildcharm
+silent! colorscheme wildcharm
 
 " Go back to where you leave
 if has("autocmd")
