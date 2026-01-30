@@ -2,7 +2,7 @@
 " The customized VIM configuration by Huizhong Chen.
 " This file is used to set up various Vim options and key mappings.
 "
-" Last updated: 2025-12-25
+" Last updated: 2026-01-30
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -141,28 +141,32 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 " lazy man
 inoremap jj <ESC>l
-
 " Settings of leader key
 nnoremap <space> <nop>
 let mapleader = " "
-
+let g:mapleader = " "
 " Highlight off
 nnoremap <Leader>n :nohlsearch<CR>
-
 " Switch between buffters
 nnoremap <Leader>, :bprevious<CR>
 nnoremap <Leader>. :bnext<CR>
-
 " Keep search pattern at the center of the screen.
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
-
 " After intendent, keep selecting
 vnoremap < <gv
 vnoremap > >gv
+" Moving to the head and tail of one line
+noremap H ^
+noremap L $
+" Treat long lines as break lines
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
