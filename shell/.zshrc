@@ -119,7 +119,6 @@ fi
 
 # if Nvim is available, use Nvim instead of Vim.
 if command -v nvim >/dev/null 2>&1; then
-    export EDITOR="nvim"
     alias nv="nvim"
 fi
 
