@@ -146,82 +146,96 @@ inoremap jj <ESC>l
 nnoremap <space> <nop>
 let mapleader = " "
 
+" Highlight off
 nnoremap <Leader>n :nohlsearch<CR>
+
+" Switch between buffters
 nnoremap <Leader>, :bprevious<CR>
 nnoremap <Leader>. :bnext<CR>
+
+" Keep search pattern at the center of the screen.
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+
+" After intendent, keep selecting
+vnoremap < <gv
+vnoremap > >gv
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Customized Statusline (deprecated after vim-airline)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" function! HighlightSearch()
-"   if &hls
-"     return 'H'
-"   else
-"     return ''
-"   endif
-" endfunction
-" 
-" " Costumized Colors
-" hi User1 guifg=#ffdad8 guibg=#880c0e ctermfg=224 ctermbg=88
-" hi User2 guifg=#000000 guibg=#F4905C ctermfg=16  ctermbg=173
-" hi User3 guifg=#292b00 guibg=#f4f597 ctermfg=58  ctermbg=229
-" hi User4 guifg=#112605 guibg=#aefe7B ctermfg=22  ctermbg=155
-" hi User5 guifg=#051d00 guibg=#7dcc7d ctermfg=22  ctermbg=114
-" hi User7 guifg=#ffffff guibg=#880c0e ctermfg=231 ctermbg=88  cterm=bold gui=bold
-" hi User8 guifg=#ffffff guibg=#5b7fbb ctermfg=231 ctermbg=67
-" hi User9 guifg=#ffffff guibg=#810085 ctermfg=231 ctermbg=90
-" hi User0 guifg=#ffffff guibg=#094afe ctermfg=231 ctermbg=27
-" hi User6 guifg=#ffffff guibg=#005f00 ctermfg=231 ctermbg=22   " NORMAL
-" hi User10 guifg=#000000 guibg=#afff00 ctermfg=16  ctermbg=154 " INSERT
-" hi User11 guifg=#ffffff guibg=#5f00af ctermfg=231 ctermbg=55  " VISUAL
-" hi User12 guifg=#ffffff guibg=#870000 ctermfg=231 ctermbg=88  " REPLACE
-" 
-" " Costumized Statusline
-" function! StatuslineMode()
-"   let l:m = mode()
-"   if l:m ==# 'n'
-"     return '%#User6# NORMAL '
-"   elseif l:m ==# 'i'
-"     return '%#User10# INSERT '
-"   elseif l:m ==# 'R'
-"     return '%#User12# REPLACE '
-"   elseif l:m ==# 'c'
-"     return '%#User6# COMMAND '
-"   elseif l:m ==# 'v' || l:m ==# 'V' || l:m ==# "\<C-v>"
-"     return '%#User11# VISUAL '
-"   else
-"     return '%#User6# '.l:m.' '
-"   endif
-" endfunction
-" 
-" function! StatusEnc()
-"   return &fenc != '' ? &fenc : &enc
-" endfunction
-" 
-" function! StatusBom()
-"   return &bomb ? ',BOM' : ''
-" endfunction
-" 
-" function! StatusSpell()
-"   return &spelllang . HighlightSearch()
-" endfunction
-" 
-" function! MyStatusline()
-"   return StatuslineMode()
-"         \ . '[%n]'
-"         \ . ' %<%F%m%r%w  %='
-"         \ . '%8* R:%l/%L'
-"         \ . '%8* C:%02c '
-"         \ . '%0* %P %y '
-" "        \ . '%2*%y'
-" "        \ . '%8* R:%l/%L (%02p%%) '
-" "        \ . '%5*' . StatusSpell()
-" "        \ . '%3*' . StatusEnc()
-" "        \ . '%3*' . StatusBom()
-" "        \ . '%4*' . &ff
-" endfunction
-" 
+function! HighlightSearch()
+  if &hls
+    return 'H'
+  else
+    return ''
+  endif
+endfunction
+
+" Costumized Colors
+hi User1 guifg=#ffdad8 guibg=#880c0e ctermfg=224 ctermbg=88
+hi User2 guifg=#000000 guibg=#F4905C ctermfg=16  ctermbg=173
+hi User3 guifg=#292b00 guibg=#f4f597 ctermfg=58  ctermbg=229
+hi User4 guifg=#112605 guibg=#aefe7B ctermfg=22  ctermbg=155
+hi User5 guifg=#051d00 guibg=#7dcc7d ctermfg=22  ctermbg=114
+hi User7 guifg=#ffffff guibg=#880c0e ctermfg=231 ctermbg=88  cterm=bold gui=bold
+hi User8 guifg=#ffffff guibg=#5b7fbb ctermfg=231 ctermbg=67
+hi User9 guifg=#ffffff guibg=#810085 ctermfg=231 ctermbg=90
+hi User0 guifg=#ffffff guibg=#094afe ctermfg=231 ctermbg=27
+hi User6 guifg=#ffffff guibg=#005f00 ctermfg=231 ctermbg=22   " NORMAL
+hi User10 guifg=#000000 guibg=#afff00 ctermfg=16  ctermbg=154 " INSERT
+hi User11 guifg=#ffffff guibg=#5f00af ctermfg=231 ctermbg=55  " VISUAL
+hi User12 guifg=#ffffff guibg=#870000 ctermfg=231 ctermbg=88  " REPLACE
+
+" Costumized Statusline
+function! StatuslineMode()
+  let l:m = mode()
+  if l:m ==# 'n'
+    return '%#User6# NORMAL '
+  elseif l:m ==# 'i'
+    return '%#User10# INSERT '
+  elseif l:m ==# 'R'
+    return '%#User12# REPLACE '
+  elseif l:m ==# 'c'
+    return '%#User6# COMMAND '
+  elseif l:m ==# 'v' || l:m ==# 'V' || l:m ==# "\<C-v>"
+    return '%#User11# VISUAL '
+  else
+    return '%#User6# '.l:m.' '
+  endif
+endfunction
+
+function! StatusEnc()
+  return &fenc != '' ? &fenc : &enc
+endfunction
+
+function! StatusBom()
+  return &bomb ? ',BOM' : ''
+endfunction
+
+function! StatusSpell()
+  return &spelllang . HighlightSearch()
+endfunction
+
+function! MyStatusline()
+  return StatuslineMode()
+        \ . '[%n]'
+        \ . ' %<%F%m%r%w  %='
+        \ . '%8* R:%l/%L'
+        \ . '%8* C:%02c '
+        \ . '%0* %P %y '
+"        \ . '%2*%y'
+"        \ . '%8* R:%l/%L (%02p%%) '
+"        \ . '%5*' . StatusSpell()
+"        \ . '%3*' . StatusEnc()
+"        \ . '%3*' . StatusBom()
+"        \ . '%4*' . &ff
+endfunction
+
 " set statusline=%!MyStatusline()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -290,3 +304,8 @@ let g:airline_theme='dark'                         " Use this theme
 
 " Configuration for vim's colorscheme
 colorscheme wildcharm
+
+" Go back to where you leave
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
