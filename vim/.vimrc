@@ -307,6 +307,8 @@ let g:airline#extensions#tabline#enabled=1          " Enable tab line
 let g:airline_theme='dark'                         " Use this theme
 
 " Configuration for vim's colorscheme
+" If you want to use a customized colorscheme,
+" you need to put it on `~/.vim/colors/` first.
 silent! colorscheme wildcharm
 
 " Go back to where you leave
