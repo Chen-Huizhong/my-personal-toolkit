@@ -134,3 +134,5 @@ if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
 
+zstyle ':completion:*' special-dirs false
+
