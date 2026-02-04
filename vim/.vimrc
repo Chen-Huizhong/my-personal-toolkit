@@ -5,13 +5,8 @@
 " Last updated: 2026-01-30
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
-" Disable vi compatibility, if for some reason it's on.
-if &compatible
-      set nocompatible
-endif
-
 " General settings
+set nocompatible
 set clipboard^=unnamed,unnamedplus
 set confirm                         " Confirm when closing unsaved/readonly files
 set iskeyword+=_,$,@,%,#,-          " Treat these symbols as part of words
@@ -48,9 +43,8 @@ set matchtime=2
 set t_Co=256                        " 256 Colors
 set colorcolumn=81                  " highlight specific columns
 highlight ColorColumn ctermbg=lightcyan guibg=blue
-" open new split panes to right and bottom, which feels more natural
-set splitbelow
 set splitright
+set splitbelow
 "set title
 
 " Search settings
@@ -103,7 +97,7 @@ filetype indent on                  " Enable filetype-based indentation
 syntax on
 syntax enable                       " Enable syntax highlighting
 set backspace=indent,start      " Backspace over anything
-"set background=dark                " Set background color (uncomment to enable)
+set background=dark                " Set background color
 
 " Spell checking
 "set spell spelllang=en_us          " Enable spell checking
@@ -246,7 +240,9 @@ function! MyStatusline()
 "        \ . '%4*' . &ff
 endfunction
 
-" set statusline=%!MyStatusline()
+"set statusline=%!MyStatusline()
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -264,13 +260,12 @@ call plug#begin('~/.vim/plugged')           " Where the plugins install
 
     Plug 'easymotion/vim-easymotion'                    " EasyMotion
     Plug 'tpope/vim-surround'                           " Vim-Surround
-    Plug 'mhinz/vim-signify', { 'tag': 'legacy' }       " vim-signify
+    Plug 'mhinz/vim-signify', { 'tag': 'legacy' }       " vim-signify (with VCS)
     Plug 'preservim/nerdtree'
     Plug 'Xuyuanp/nerdtree-git-plugin'                  " Git status flag
     Plug 'ryanoasis/vim-devicons'                       " File icon
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'      " File icon color
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    Plug 'itchyny/lightline.vim'
     Plug 'jiangmiao/auto-pairs'
 "    Plug 'preservim/nerdcommenter'
 
@@ -308,11 +303,10 @@ nmap <leader>b <Plug>(easymotion-b)
 nmap <leader>f <Plug>(easymotion-fl)
 nmap <leader>F <Plug>(easymotion-Fl)
 
-" Configuration for vim-airline
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1          " Enable tab line
-let g:airline_theme='dark'                         " Use this theme
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+" Configuration for lightline
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
 
 " Configuration for vim's colorscheme
 " If you want to use a customized colorscheme,
@@ -321,5 +315,12 @@ silent! colorscheme wildcharm
 
 " Go back to where you leave
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \   exe "normal g`\"" |
+                \ endif
+endif
+
+if &term =~ '256color'
+    set t_ut=
 endif
