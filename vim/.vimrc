@@ -6,15 +6,19 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+" Disable vi compatibility, if for some reason it's on.
+if &compatible
+      set nocompatible
+endif
+
 " General settings
-set nocompatible                    " Disable compatibility mode
+set clipboard^=unnamed,unnamedplus
 set confirm                         " Confirm when closing unsaved/readonly files
 set iskeyword+=_,$,@,%,#,-          " Treat these symbols as part of words
 set shortmess=atl                   " Shorten messages
 set mouse+=a                        " Mouse support (uncomment to enable)
 "set selection=exclusive            " Selection mode (uncomment to enable)
 set nojoinspaces                    " Suppress inserting two spaces between sentences
-set backspace=indent,eol,start      " Backspace over anything
 set whichwrap+=<,>,h,l
 set nofoldenable                    " Disable folding by default
 let $LANG='en'                      " Set language
@@ -49,7 +53,6 @@ set splitbelow
 set splitright
 "set title
 
-
 " Search settings
 set incsearch                       " Incremental search
 set hlsearch                        " Highlight search results
@@ -58,6 +61,7 @@ set smartcase                       " Smart case search
 
 " Indentation settings
 set autoindent                      " Auto indent
+set smartindent
 set shiftwidth=4                    " Indent width
 set tabstop=4                       " Tab width
 set expandtab                       " Use spaces instead of tabs
@@ -98,6 +102,7 @@ set list
 filetype indent on                  " Enable filetype-based indentation
 syntax on
 syntax enable                       " Enable syntax highlighting
+set backspace=indent,start      " Backspace over anything
 "set background=dark                " Set background color (uncomment to enable)
 
 " Spell checking
@@ -156,7 +161,7 @@ nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
-" After intendent, keep selecting
+" After indent, keep selecting
 vnoremap < <gv
 vnoremap > >gv
 " Moving to the head and tail of one line
@@ -267,6 +272,7 @@ call plug#begin('~/.vim/plugged')           " Where the plugins install
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'jiangmiao/auto-pairs'
+"    Plug 'preservim/nerdcommenter'
 
 call plug#end()
 
