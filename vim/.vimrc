@@ -63,6 +63,7 @@ set shiftwidth=4                " Use 4 spaces for (auto)indent
 set tabstop=4                   " Use 4 spaces for a tab
 set expandtab                   " Convert tabs to spaces
 set smarttab                    " Insert blanks according to 'shiftwidth'
+filetype plugin indent on
 
 " ====================================================================
 " 4. File Handling & Encoding
@@ -179,8 +180,7 @@ if filereadable(s:plug_path)
 
         Plug 'easymotion/vim-easymotion'             " Fast navigation
         Plug 'tpope/vim-surround'                    " Edit surroundings (quotes, brackets)
-        Plug 'mhinz/vim-signify', { 'tag': 'legacy' } " Show git diff in gutter
-        Plug 'preservim/nerdtree'                    " File explorer
+        Plug 'tpope/vim-commentary'                  " Commentary
         Plug 'Xuyuanp/nerdtree-git-plugin'           " Git status for NERDTree
         Plug 'ryanoasis/vim-devicons'                " File icons
         Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Icon colors
