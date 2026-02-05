@@ -173,7 +173,7 @@ nnoremap ; :
 " Note: To install plugs, execute command `:PlugInstall`.
 " Note: To uninstall plugs, execute command `:PlugClean`.
 " ====================================================================
-let s:plug_path = expand('~/.vim/autoload/plug.vim1')
+let s:plug_path = expand('~/.vim/autoload/plug.vim')
 if filereadable(s:plug_path)
     call plug#begin('~/.vim/plugged')
 
