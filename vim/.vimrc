@@ -1,326 +1,277 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The customized VIM configuration by Huizhong Chen.
-" This file is used to set up various Vim options and key mappings.
-"
-" Last updated: 2026-01-30
+" Optimized & Categorized Version
+" Last updated: 2026-02-04
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" General settings
-set nocompatible
-set clipboard^=unnamed,unnamedplus
-set confirm                         " Confirm when closing unsaved/readonly files
-set iskeyword+=_,$,@,%,#,-          " Treat these symbols as part of words
-set shortmess=atl                   " Shorten messages
-set mouse+=a                        " Mouse support (uncomment to enable)
-"set selection=exclusive            " Selection mode (uncomment to enable)
-set nojoinspaces                    " Suppress inserting two spaces between sentences
-set whichwrap+=<,>,h,l
-set nofoldenable                    " Disable folding by default
-let $LANG='en'                      " Set language
-set langmenu=en                     " Set menu language
+" ====================================================================
+" 1. General Settings
+" ====================================================================
+set nocompatible                " Use Vim defaults instead of vi compatibility
+set clipboard^=unnamed,unnamedplus " Sync with system clipboard
+set confirm                     " Prompt for confirmation on unsaved changes
+set iskeyword+=_,$,@,%,#,-      " Treat these symbols as part of a 'word'
+set shortmess=atl               " Shorten messages to avoid 'Press Enter' prompts
+set mouse=a                     " Enable mouse support in all modes
+set nojoinspaces                " Use one space (not two) after punctuation when joining
+set whichwrap+=<,>,h,l          " Allow arrows/h/l to move to next/prev line
+set nofoldenable                " Keep all folds open by default
+set history=1000                " Remember more commands and search history
+set hidden                      " Allow switching buffers without saving
+let $LANG='en'                  " Interface language
+set langmenu=en                 " Menu language
 
-" Display settings
-set viewoptions=cursor
-set number                          " Show line numbers
-set relativenumber                  " Show relative line numbers
-set ruler                           " Show ruler
-set cursorline                      " Highlight current line
-set nocursorcolumn                    " Highlight current column
-highlight CursorLine   ctermbg=237 guibg=#3a3a3a cterm=NONE gui=NONE
-highlight CursorColumn ctermbg=237 guibg=#3a3a3a cterm=NONE gui=NONE
-set textwidth=80                    " Set text width
-set wrap                            " Enable line wrapping
-set linebreak                       " Break lines at convenient points
-set wrapmargin=2                    " Margin for wrapping
-set scrolloff=10                    " Lines of context when scrolling
-"set sidescrolloff=15               " Horizontal scroll offset (uncomment to enable)
-set laststatus=2                    " Always show status line
-set cmdheight=1                     " Command line height
-set showcmd                         " Show command in bottom bar
-set showmode                        " Show mode status in bottom bar
-set showmatch                       " Highlight matching brackets
-set matchtime=2
-set t_Co=256                        " 256 Colors
-set colorcolumn=81                  " highlight specific columns
-highlight ColorColumn ctermbg=lightcyan guibg=blue
-set splitright
-set splitbelow
-"set title
+" ====================================================================
+" 2. Display & UI Settings
+" ====================================================================
+set number                      " Show line numbers
+set relativenumber              " Show relative line numbers for jumping
+set ruler                       " Show cursor position in the status bar
+set cursorline                  " Highlight the line the cursor is on
+set nocursorcolumn              " Disable column highlight for performance
+set textwidth=80                " Hard wrap at 80 characters
+set wrap                        " Enable visual line wrapping
+set linebreak                   " Don't wrap lines in the middle of a word
+set wrapmargin=2                " Set margin for wrapping
+set scrolloff=10                " Keep 10 lines of context above/below cursor
+set laststatus=2                " Always show the status line
+set cmdheight=1                 " Height of the command bar
+set showcmd                     " Show partial commands in the bottom bar
+set showmode                    " Display the current mode (Normal, Insert, etc.)
+set showmatch                   " Briefly jump to matching brackets/braces
+set matchtime=2                 " Tenths of a second to show the matching bracket
+set t_Co=256                    " Enable 256-color support
+set colorcolumn=81              " Vertical line at column 81
+set splitright                  " Open new vertical splits to the right
+set splitbelow                  " Open new horizontal splits below
+set list                        " Show invisible characters (tabs, trailing spaces)
+set listchars=tab:>-,nbsp:~,trail:∙,eol:¶
 
-" Search settings
-set incsearch                       " Incremental search
-set hlsearch                        " Highlight search results
-set ignorecase                      " ignore case while searching
-set smartcase                       " Smart case search
+" Custom CursorLine Highlight
+"highlight CursorLine   ctermbg=237 guibg=#3a3a3a cterm=NONE gui=NONE
+"highlight ColorColumn  ctermbg=lightcyan guibg=blue
 
-" Indentation settings
-set autoindent                      " Auto indent
-set smartindent
-set shiftwidth=4                    " Indent width
-set tabstop=4                       " Tab width
-set expandtab                       " Use spaces instead of tabs
-set smarttab                        " Smart tab
+" ====================================================================
+" 3. Search & Indentation
+" ====================================================================
+" Search
+set incsearch                   " Find results as you type
+set hlsearch                    " Highlight search results
+set ignorecase                  " Case-insensitive searching
+set smartcase                   " Case-sensitive if search contains uppercase
 
-" Encoding
-set encoding=utf-8
-set fileencoding=utf-8
+" Indentation
+set autoindent                  " Copy indent from current line to next
+set smartindent                 " Be smart about automatic indentation
+set shiftwidth=4                " Use 4 spaces for (auto)indent
+set tabstop=4                   " Use 4 spaces for a tab
+set expandtab                   " Convert tabs to spaces
+set smarttab                    " Insert blanks according to 'shiftwidth'
 
-" File handling
-set nobackup                        " Don't create backup files
-set noswapfile                      " Don't create swap files
-set nowb                            " Don't write backup files
-set noundofile                      " Don't keep undo history
-set backupdir=~/.vim/.backup//      " Backup directory (uncomment to enable)
-set directory=~/.vim/.swp//         " Swap file directory (uncomment to enable)
-set undodir=~/.vim/.undo//          " Undo file directory (uncomment to enable)
+" ====================================================================
+" 4. File Handling & Encoding
+" ====================================================================
+set encoding=utf-8              " Internal encoding
+set fileencoding=utf-8          " File write encoding
+set nobackup                    " Disable backup files
+set noswapfile                  " Disable swap files (.swp)
+set nowb                        " Disable 'writebackup'
+set noundofile                  " Disable persistent undo
+set autochdir                   " Automatically change directory to current file
+set autoread                    " Auto-reload file if changed outside Vim
+set autowrite                   " Auto-save before commands like :next and :make
 
-set autochdir                       " Auto change working directory
-set noerrorbells                    " No error bells
-set novisualbell                    " No visual bell
-set noerrorbells visualbell t_vb=   " Disable audible bell
+" Bell settings (Silence the beast)
+set noerrorbells
+set novisualbell
+set t_vb=                       " Clear the visual bell terminal string
 
-" History and completion
-set history=1000                    " Command history size
-set autoread                        " Auto read files changed outside
-set autowrite
-set hidden
-set wildmenu                        " Enhanced command-line completion
+" ====================================================================
+" 5. Custom Functions & Tabline
+" ====================================================================
+" Enhanced command-line completion
+set wildmenu
 set wildmode=longest:list,full
+set showtabline=2               " Always show the tab bar
 
-" List characters
-set listchars=tab:>-,nbsp:~,trail:∙ " set list to see tabs and non-breakable spaces
-set listchars+=eol:¶
-set list
+" Custom tabline showing buffer number and filename
+function! BufNumber()
+    return repeat(' ', strlen(bufnr('$')) - strlen(bufnr())) . bufnr()
+endfunction
+set tabline=%!BufNumber()\ %t%m
 
-" Filetype and syntax
-filetype indent on                  " Enable filetype-based indentation
-syntax on
-syntax enable                       " Enable syntax highlighting
-set backspace=indent,start      " Backspace over anything
-set background=dark                " Set background color
+" ====================================================================
+" 6. Key Mappings & Leader
+" ====================================================================
+" Set Space as Leader
+nnoremap <space> <nop>
+let mapleader = " "
 
-" Spell checking
-"set spell spelllang=en_us          " Enable spell checking
+" Disable Ex-mode (prevents accidental Q presses)
+nmap Q <Nop>
+
+" Buffer Navigation Mappings
+nnoremap <Leader>l :bnext<CR>
+nnoremap <Leader>h :bprevious<CR>
+" `<leader> + d` to close current buffer
+" keep window alive and close the buffer
+nnoremap <Leader>d :bdelete<CR>
+" Switch to the last-operated buffer
+nnoremap <Leader>k :b#<CR>
+nnoremap <Leader>j :ls<CR>:echom "Enter the number of buffer:"<CR>:b
 
 
-" Key mappings
-"
-" Here are some basic rules for key mappings:
-" i for insert mode
-" n for normal mode
-" v for visual mode
-" c for command mode
-"
-" `noremap` for nonrecursive mapping
-" `unmap` for delete mapping of one key
-"
-" `mapclear` clears all the key mappings.
-
-nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
-
-" Try to prevent bad habits like using the arrow keys for movement. This is
-" not the only possible bad habit. For example, holding down the h/j/k/l keys
-" for movement, rather than using more efficient movement commands, is also a
-" bad habit. The former is enforceable through a .vimrc, while we don't know
-" how to prevent the latter.
-" Do this in normal mode...
+" Disable Arrow Keys (Force h,j,k,l habit)
 nnoremap <Left>  :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up>    :echoe "Use k"<CR>
 nnoremap <Down>  :echoe "Use j"<CR>
-" ...and in insert mode
 inoremap <Left>  <ESC>:echoe "Use h"<CR>
 inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
-" for moving among windows
+
+" Window Navigation (Ctrl + h,j,k,l)
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-" lazy man
+
+" Fast Exit Insert Mode
 inoremap jj <ESC>l
-" Settings of leader key
-nnoremap <space> <nop>
-let mapleader = " "
-let g:mapleader = " "
-" Highlight off
-nnoremap <Leader>n :nohlsearch<CR>
-" Switch between buffters
-nnoremap <Leader>, :bprevious<CR>
-nnoremap <Leader>. :bnext<CR>
-" Keep search pattern at the center of the screen.
+
+" UI & Search Mappings
+nnoremap <Leader>n :nohlsearch<CR>      " Clear search highlight
+
+" Keep search results centered on screen
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
-" After indent, keep selecting
+
+" Visual Mode: Keep selection after shifting indent
 vnoremap < <gv
 vnoremap > >gv
-" Moving to the head and tail of one line
+
+" Logical movement: H for start of line, L for end of line
 noremap H ^
 noremap L $
-" Treat long lines as break lines
+
+" Wrap-aware movements (gj/gk instead of j/k for visual lines)
 nnoremap k gk
 nnoremap gk k
 nnoremap j gj
 nnoremap gj j
-" Map `;` to `:` to avoid pressing Shift
+
+" Use semicolon as colon for faster commands
 nnoremap ; :
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Customized Statusline (deprecated after vim-airline)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! HighlightSearch()
-  if &hls
-    return 'H'
-  else
-    return ''
-  endif
-endfunction
+" ====================================================================
+" 7. Plugin Management (vim-plug)
+" ====================================================================
+call plug#begin('~/.vim/plugged')
 
-" Costumized Colors
-hi User1 guifg=#ffdad8 guibg=#880c0e ctermfg=224 ctermbg=88
-hi User2 guifg=#000000 guibg=#F4905C ctermfg=16  ctermbg=173
-hi User3 guifg=#292b00 guibg=#f4f597 ctermfg=58  ctermbg=229
-hi User4 guifg=#112605 guibg=#aefe7B ctermfg=22  ctermbg=155
-hi User5 guifg=#051d00 guibg=#7dcc7d ctermfg=22  ctermbg=114
-hi User7 guifg=#ffffff guibg=#880c0e ctermfg=231 ctermbg=88  cterm=bold gui=bold
-hi User8 guifg=#ffffff guibg=#5b7fbb ctermfg=231 ctermbg=67
-hi User9 guifg=#ffffff guibg=#810085 ctermfg=231 ctermbg=90
-hi User0 guifg=#ffffff guibg=#094afe ctermfg=231 ctermbg=27
-hi User6 guifg=#ffffff guibg=#005f00 ctermfg=231 ctermbg=22   " NORMAL
-hi User10 guifg=#000000 guibg=#afff00 ctermfg=16  ctermbg=154 " INSERT
-hi User11 guifg=#ffffff guibg=#5f00af ctermfg=231 ctermbg=55  " VISUAL
-hi User12 guifg=#ffffff guibg=#870000 ctermfg=231 ctermbg=88  " REPLACE
-
-" Costumized Statusline
-function! StatuslineMode()
-  let l:m = mode()
-  if l:m ==# 'n'
-    return '%#User6# NORMAL '
-  elseif l:m ==# 'i'
-    return '%#User10# INSERT '
-  elseif l:m ==# 'R'
-    return '%#User12# REPLACE '
-  elseif l:m ==# 'c'
-    return '%#User6# COMMAND '
-  elseif l:m ==# 'v' || l:m ==# 'V' || l:m ==# "\<C-v>"
-    return '%#User11# VISUAL '
-  else
-    return '%#User6# '.l:m.' '
-  endif
-endfunction
-
-function! StatusEnc()
-  return &fenc != '' ? &fenc : &enc
-endfunction
-
-function! StatusBom()
-  return &bomb ? ',BOM' : ''
-endfunction
-
-function! StatusSpell()
-  return &spelllang . HighlightSearch()
-endfunction
-
-function! MyStatusline()
-  return StatuslineMode()
-        \ . '[%n]'
-        \ . ' %<%F%m%r%w  %='
-        \ . '%8* R:%l/%L'
-        \ . '%8* C:%02c '
-        \ . '%0* %P %y '
-"        \ . '%2*%y'
-"        \ . '%8* R:%l/%L (%02p%%) '
-"        \ . '%5*' . StatusSpell()
-"        \ . '%3*' . StatusEnc()
-"        \ . '%3*' . StatusBom()
-"        \ . '%4*' . &ff
-endfunction
-
-"set statusline=%!MyStatusline()
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" The configurations of plugins start here.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" The installation of vim-plug:
-" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-" 
-" NOTE: Don't forget to run `:PlugInstall` after you add a plugin.
-" NOTE: And don't forget to run `:PlugClean` after delete one.
-
-call plug#begin('~/.vim/plugged')           " Where the plugins install
-
-    Plug 'easymotion/vim-easymotion'                    " EasyMotion
-    Plug 'tpope/vim-surround'                           " Vim-Surround
-    Plug 'mhinz/vim-signify', { 'tag': 'legacy' }       " vim-signify (with VCS)
-    Plug 'preservim/nerdtree'
-    Plug 'Xuyuanp/nerdtree-git-plugin'                  " Git status flag
-    Plug 'ryanoasis/vim-devicons'                       " File icon
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'      " File icon color
-    Plug 'itchyny/lightline.vim'
-    Plug 'jiangmiao/auto-pairs'
-"    Plug 'preservim/nerdcommenter'
+Plug 'easymotion/vim-easymotion'            " Fast navigation
+Plug 'tpope/vim-surround'                    " Edit surroundings (quotes, brackets)
+Plug 'mhinz/vim-signify', { 'tag': 'legacy' } " Show git diff in gutter
+Plug 'preservim/nerdtree'                    " File explorer
+Plug 'Xuyuanp/nerdtree-git-plugin'           " Git status for NERDTree
+Plug 'ryanoasis/vim-devicons'                " File icons
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Icon colors
+Plug 'itchyny/lightline.vim'                 " Light status bar
+Plug 'mengelbrecht/lightline-bufferline'     " Light buffer line
+Plug 'jiangmiao/auto-pairs'                  " Auto-close brackets
+Plug 'vim/colorschemes'                      " Collection of colors
 
 call plug#end()
 
-" Configuration for NERDTree
+" ====================================================================
+" 8. Plugin Configurations
+" ====================================================================
+
+" NERDTree Settings
 nnoremap <C-t> :NERDTreeToggle<CR>
-autocmd StdinReadPre * let s:std_in=1
-" Start NERDTree. If a file is specified, move the cursor to its window.
-" autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
-" Start NERDTree when Vim starts with a directory argument
+" Auto-open NERDTree if Vim starts with a directory
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
     \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
-" Exit Vim if NERDTree is the only window remaining in the only tab.
+" Auto-close Vim if NERDTree is the last window
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
-" Configuration for EasyMotion
+" EasyMotion Settings
 let g:EasyMotion_keys = "asdfghjklqwertyuiopzxcvbnm"
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_do_mapping = 0
-" EasyMotion key mappings
-" Move hjkl
-map  <Leader>l <Plug>(easymotion-lineforward)
-map  <Leader>j <Plug>(easymotion-j)
-map  <Leader>k <Plug>(easymotion-k)
-map  <Leader>h <Plug>(easymotion-linebackward)
-" 1-character search 
+
 nmap <Leader>s <Plug>(easymotion-s)
-" 2-character search 
 nmap <leader><leader>s <Plug>(easymotion-s2)
-" Word motions
 nmap <leader>w <Plug>(easymotion-w)
 nmap <leader>b <Plug>(easymotion-b)
-" Inline character motions
-nmap <leader>f <Plug>(easymotion-fl)
-nmap <leader>F <Plug>(easymotion-Fl)
+"map  <Leader>l <Plug>(easymotion-lineforward)
+"map  <Leader>j <Plug>(easymotion-j)
+"map  <Leader>k <Plug>(easymotion-k)
+"map  <Leader>h <Plug>(easymotion-linebackward)
+"nmap <leader>f <Plug>(easymotion-fl)
+"nmap <leader>F <Plug>(easymotion-Fl)
 
-" Configuration for lightline
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
+" Lightline Settings
+let g:lightline = { 
+    \ 'colorscheme': 'wombat',
+    \ 'tabline': {
+    \    'left': [ ['buffers'] ],
+    \    'right': [ ['close'] ],
+    \ },
+    \ 'component_expand': {
+    \   'buffers': 'lightline#bufferline#buffers'
+    \ },
+    \ 'component_type': {
+    \   'buffers': 'tabsel'
+    \ },
+    \ }
+let g:lightline#bufferline#show_number=3
+let g:lightline#bufferline#ordinal_number_map = {
+\ 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴',
+\ 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
+let g:lightline#bufferline#unnamed = '[No Name]'
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+nmap <Leader>c1 <Plug>lightline#bufferline#delete(1)
+nmap <Leader>c2 <Plug>lightline#bufferline#delete(2)
+nmap <Leader>c3 <Plug>lightline#bufferline#delete(3)
+nmap <Leader>c4 <Plug>lightline#bufferline#delete(4)
+nmap <Leader>c5 <Plug>lightline#bufferline#delete(5)
+nmap <Leader>c6 <Plug>lightline#bufferline#delete(6)
+nmap <Leader>c7 <Plug>lightline#bufferline#delete(7)
+nmap <Leader>c8 <Plug>lightline#bufferline#delete(8)
+nmap <Leader>c9 <Plug>lightline#bufferline#delete(9)
+nmap <Leader>c0 <Plug>lightline#bufferline#delete(10)
 
-" Configuration for vim's colorscheme
-" If you want to use a customized colorscheme,
-" you need to put it on `~/.vim/colors/` first.
+" Color Scheme
+syntax enable
+set background=dark
 silent! colorscheme wildcharm
 
-" Go back to where you leave
+" ====================================================================
+" 9. Finishing Touches
+" ====================================================================
+" Remember cursor position when reopening a file
 if has("autocmd")
     autocmd BufReadPost *
-                \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                \   exe "normal g`\"" |
-                \ endif
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
 endif
 
+" Fix potential background color issues in some terminals
 if &term =~ '256color'
     set t_ut=
 endif
+
