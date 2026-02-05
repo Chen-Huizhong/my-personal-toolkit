@@ -183,6 +183,7 @@ Plug 'itchyny/lightline.vim'                 " Light status bar
 Plug 'mengelbrecht/lightline-bufferline'     " Light buffer line
 Plug 'jiangmiao/auto-pairs'                  " Auto-close brackets
 Plug 'vim/colorschemes'                      " Collection of colors
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}  " Mult-cursor
 
 call plug#end()
 
