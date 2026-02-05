@@ -1,23 +1,23 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The customized VIM configuration by Huizhong Chen.
-" Optimized & Categorized Version
-" Last updated: 2026-02-04
+"
+" Last updated: 2026-02-05
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " ====================================================================
 " 1. General Settings
 " ====================================================================
-set nocompatible                " Use Vim defaults instead of vi compatibility
+set nocompatible                " Use Vim defaults (not Vi)
 set clipboard^=unnamed,unnamedplus " Sync with system clipboard
-set confirm                     " Prompt for confirmation on unsaved changes
-set iskeyword+=_,$,@,%,#,-      " Treat these symbols as part of a 'word'
-set shortmess=atl               " Shorten messages to avoid 'Press Enter' prompts
-set mouse=a                     " Enable mouse support in all modes
-set nojoinspaces                " Use one space (not two) after punctuation when joining
-set whichwrap+=<,>,h,l          " Allow arrows/h/l to move to next/prev line
-set nofoldenable                " Keep all folds open by default
-set history=1000                " Remember more commands and search history
-set hidden                      " Allow switching buffers without saving
+set iskeyword+=_,$,@,%,#,-      " Symbols treated as part of a word
+set shortmess=atl               " Avoid 'press enter' prompts
+set whichwrap+=<,>,h,l          " Keys can move to next/prev line
+set history=1000                " Command history limit
+set confirm                     " Prompt to save changes
+set mouse=a                     " Enable mouse in all modes
+set nojoinspaces                " One space after punctuation
+set nofoldenable                " Start with folds open
+set hidden                      " Switch buffers without saving
 let $LANG='en'                  " Interface language
 set langmenu=en                 " Menu language
 
@@ -26,16 +26,16 @@ set langmenu=en                 " Menu language
 " ====================================================================
 set number                      " Show line numbers
 set relativenumber              " Show relative line numbers for jumping
-set ruler                       " Show cursor position in the status bar
-set cursorline                  " Highlight the line the cursor is on
-set nocursorcolumn              " Disable column highlight for performance
-set textwidth=80                " Hard wrap at 80 characters
+set noruler                     " Show cursor position
+set cursorline                  " Highlight current line
+set nocursorcolumn              " Disable column highlight (speed)
+set textwidth=80                " Hard wrap at 80 chars
 set wrap                        " Enable visual line wrapping
 set linebreak                   " Don't wrap lines in the middle of a word
 set wrapmargin=2                " Set margin for wrapping
-set scrolloff=10                " Keep 10 lines of context above/below cursor
-set laststatus=2                " Always show the status line
-set cmdheight=1                 " Height of the command bar
+set scrolloff=10                " Context lines around cursor
+set laststatus=2                " Always show status line
+set cmdheight=1                 " Command bar height
 set showcmd                     " Show partial commands in the bottom bar
 set showmode                    " Display the current mode (Normal, Insert, etc.)
 set showmatch                   " Briefly jump to matching brackets/braces
@@ -45,11 +45,10 @@ set colorcolumn=81              " Vertical line at column 81
 set splitright                  " Open new vertical splits to the right
 set splitbelow                  " Open new horizontal splits below
 set list                        " Show invisible characters (tabs, trailing spaces)
-set listchars=tab:>-,nbsp:~,trail:∙,eol:¶
-
-" Custom CursorLine Highlight
-"highlight CursorLine   ctermbg=237 guibg=#3a3a3a cterm=NONE gui=NONE
-"highlight ColorColumn  ctermbg=lightcyan guibg=blue
+set listchars+=tab:>-
+set listchars+=nbsp:~
+set listchars+=trail:∙
+set listchars+=eol:¶
 
 " ====================================================================
 " 3. Search & Indentation
@@ -87,12 +86,11 @@ set novisualbell
 set t_vb=                       " Clear the visual bell terminal string
 
 " ====================================================================
-" 5. Custom Functions & Tabline
+" 5. Command Line & Tabline
 " ====================================================================
-" Enhanced command-line completion
-set wildmenu
-set wildmode=longest:list,full
-set showtabline=2               " Always show the tab bar
+set wildmenu                    " Visual command completion
+set wildmode=longest:list,full  " Completion behavior
+set showtabline=2               " Always show tab bar
 
 " Custom tabline showing buffer number and filename
 function! BufNumber()
@@ -103,7 +101,6 @@ set tabline=%!BufNumber()\ %t%m
 " ====================================================================
 " 6. Key Mappings & Leader
 " ====================================================================
-" Set Space as Leader
 nnoremap <space> <nop>
 let mapleader = " "
 let g:mapleader = " "
@@ -111,7 +108,7 @@ let g:mapleader = " "
 " Disable Ex-mode (prevents accidental Q presses)
 nmap Q <Nop>
 
-" Buffer Navigation Mappings
+" Buffer Navigation
 nnoremap <Leader>l :bnext<CR>
 nnoremap <Leader>h :bprevious<CR>
 " `<leader> + d` to close current buffer
@@ -119,8 +116,8 @@ nnoremap <Leader>h :bprevious<CR>
 nnoremap <Leader>d :bdelete<CR>
 " Switch to the last-operated buffer
 nnoremap <Leader>k :b#<CR>
-nnoremap <Leader>j :ls<CR>:echom "Enter the number of buffer:"<CR>:b
-
+" List all of the buffers
+nnoremap <Leader>j :ls<CR>:echom "Buffer Number: "<CR>:b
 
 " Disable Arrow Keys (Force h,j,k,l habit)
 nnoremap <Left>  :echoe "Use h"<CR>
@@ -139,27 +136,23 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Fast Exit Insert Mode
-inoremap jj <Esc>:normal! l<CR>
+inoremap jj <Esc>
 
-" UI & Search Mappings
-nnoremap <Leader>n :nohlsearch<CR>
-
-" Keep search results centered on screen
+" Search Mappings (Center results)
 nnoremap <silent> n n:normal! zz<CR>
 nnoremap <silent> N N:normal! zz<CR>
 nnoremap <silent> * *:normal! zz<CR>
 nnoremap <silent> # #:normal! zz<CR>
 nnoremap <silent> g* g*:normal! zz<CR>
+" Alternatives to # and *
+nnoremap <Leader>, #:normal! zz<CR>
+nnoremap <Leader>. *:normal! zz<CR>
+" Quick nohightligh
+nnoremap <Leader>n :nohlsearch<CR>
 
-" Visual Mode: Keep selection after shifting indent
-vnoremap < <gv
-vnoremap > >gv
-
-" Logical movement: H for start of line, L for end of line
+" Custom Movement
 noremap H ^
 noremap L $
-nnoremap <Leader>, #zz
-nnoremap <Leader>. *zz
 
 " Wrap-aware movements (gj/gk instead of j/k for visual lines)
 nnoremap k gk
@@ -167,105 +160,112 @@ nnoremap gk k
 nnoremap j gj
 nnoremap gj j
 
-" Use semicolon as colon for faster commands
+" Visual Mode: Keep selection after shifting indent
+vnoremap < <gv
+vnoremap > >gv
+
+" A lazy shortcut
 nnoremap ; :
 
 " ====================================================================
-" 7. Plugin Management (vim-plug)
+" 7. Plugin Management (vim-plug) (conditional)
 " ====================================================================
-call plug#begin('~/.vim/plugged')
+" Instruction:
+"     Vim-Plug Installation:
+"     1. Download `plug.vim` on 
+"       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"     2. Put it on the path `~/.vim/autoload/plug.vim`.
+"
+"     Add your favourite plugs between `call plug#bigin('~/.vim/plugged')` and
+"       `call plug#end()`.
+"
+" Note: To install plugs, execute command `:PlugInstall`.
+" Note: To uninstall plugs, execute command `:PlugClean`.
+let s:plug_path = expand('~/.vim/autoload/plug.vim')
+if filereadable(s:plug_path)
+    call plug#begin('~/.vim/plugged')
 
-Plug 'easymotion/vim-easymotion'            " Fast navigation
-Plug 'tpope/vim-surround'                    " Edit surroundings (quotes, brackets)
-Plug 'mhinz/vim-signify', { 'tag': 'legacy' } " Show git diff in gutter
-Plug 'preservim/nerdtree'                    " File explorer
-Plug 'Xuyuanp/nerdtree-git-plugin'           " Git status for NERDTree
-Plug 'ryanoasis/vim-devicons'                " File icons
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Icon colors
-Plug 'itchyny/lightline.vim'                 " Light status bar
-Plug 'mengelbrecht/lightline-bufferline'     " Light buffer line
-Plug 'jiangmiao/auto-pairs'                  " Auto-close brackets
-Plug 'vim/colorschemes'                      " Collection of colors
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}  " Mult-cursor
+        Plug 'easymotion/vim-easymotion'             " Fast navigation
+        Plug 'tpope/vim-surround'                    " Edit surroundings (quotes, brackets)
+        Plug 'mhinz/vim-signify', { 'tag': 'legacy' } " Show git diff in gutter
+        Plug 'preservim/nerdtree'                    " File explorer
+        Plug 'Xuyuanp/nerdtree-git-plugin'           " Git status for NERDTree
+        Plug 'ryanoasis/vim-devicons'                " File icons
+        Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Icon colors
+        Plug 'itchyny/lightline.vim'                 " Light status bar
+        Plug 'mengelbrecht/lightline-bufferline'     " Light buffer line
+        Plug 'jiangmiao/auto-pairs'                  " Auto-close brackets
+        Plug 'vim/colorschemes'                      " Collection of colors
+        Plug 'mg979/vim-visual-multi', {'branch': 'master'}  " Mult-cursor
 
-call plug#end()
+    call plug#end()
+
+    " NERDTree
+    nnoremap <C-t> :NERDTreeToggle<CR>
+    " Auto-open NERDTree if Vim starts with a directory
+    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+        \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+    " Auto-close Vim if NERDTree is the last window
+    autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+    " EasyMotion
+    let g:EasyMotion_smartcase = 1
+    let g:EasyMotion_do_mapping = 0
+    nmap <Leader>s <Plug>(easymotion-s)
+    nmap <leader><leader>s <Plug>(easymotion-s2)
+    nmap <leader>w <Plug>(easymotion-w)
+    nmap <leader>b <Plug>(easymotion-b)
+
+    " Lightline & Bufferline
+    let g:lightline = {
+        \ 'colorscheme': 'wombat',
+        \ 'tabline': {
+        \    'left': [ ['buffers'] ],
+        \    'right': [ ['close'] ],
+        \ },
+        \ 'component_expand': {
+        \   'buffers': 'lightline#bufferline#buffers'
+        \ },
+        \ 'component_type': {
+        \   'buffers': 'tabsel'
+        \ },
+        \ }
+    let g:lightline#bufferline#show_number=3
+    let g:lightline#bufferline#ordinal_number_map = {
+        \ 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴',
+        \ 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
+    let g:lightline#bufferline#unnamed = '[No Name]'
+    nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+    nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+    nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+    nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+    nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+    nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+    nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+    nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+    nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+    nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+    nmap <Leader>c1 <Plug>lightline#bufferline#delete(1)
+    nmap <Leader>c2 <Plug>lightline#bufferline#delete(2)
+    nmap <Leader>c3 <Plug>lightline#bufferline#delete(3)
+    nmap <Leader>c4 <Plug>lightline#bufferline#delete(4)
+    nmap <Leader>c5 <Plug>lightline#bufferline#delete(5)
+    nmap <Leader>c6 <Plug>lightline#bufferline#delete(6)
+    nmap <Leader>c7 <Plug>lightline#bufferline#delete(7)
+    nmap <Leader>c8 <Plug>lightline#bufferline#delete(8)
+    nmap <Leader>c9 <Plug>lightline#bufferline#delete(9)
+    nmap <Leader>c0 <Plug>lightline#bufferline#delete(10)
+
+endif
 
 " ====================================================================
-" 8. Plugin Configurations
+" 9. Finishing Touches
 " ====================================================================
-
-" NERDTree Settings
-nnoremap <C-t> :NERDTreeToggle<CR>
-" Auto-open NERDTree if Vim starts with a directory
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
-" Auto-close Vim if NERDTree is the last window
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-" EasyMotion Settings
-let g:EasyMotion_keys = "asdfghjklqwertyuiopzxcvbnm"
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_do_mapping = 0
-
-nmap <Leader>s <Plug>(easymotion-s)
-nmap <leader><leader>s <Plug>(easymotion-s2)
-nmap <leader>w <Plug>(easymotion-w)
-nmap <leader>b <Plug>(easymotion-b)
-"map  <Leader>l <Plug>(easymotion-lineforward)
-"map  <Leader>j <Plug>(easymotion-j)
-"map  <Leader>k <Plug>(easymotion-k)
-"map  <Leader>h <Plug>(easymotion-linebackward)
-"nmap <leader>f <Plug>(easymotion-fl)
-"nmap <leader>F <Plug>(easymotion-Fl)
-
-" Lightline Settings
-let g:lightline = {
-    \ 'colorscheme': 'wombat',
-    \ 'tabline': {
-    \    'left': [ ['buffers'] ],
-    \    'right': [ ['close'] ],
-    \ },
-    \ 'component_expand': {
-    \   'buffers': 'lightline#bufferline#buffers'
-    \ },
-    \ 'component_type': {
-    \   'buffers': 'tabsel'
-    \ },
-    \ }
-let g:lightline#bufferline#show_number=3
-let g:lightline#bufferline#ordinal_number_map = {
-\ 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴',
-\ 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
-let g:lightline#bufferline#unnamed = '[No Name]'
-nmap <Leader>1 <Plug>lightline#bufferline#go(1)
-nmap <Leader>2 <Plug>lightline#bufferline#go(2)
-nmap <Leader>3 <Plug>lightline#bufferline#go(3)
-nmap <Leader>4 <Plug>lightline#bufferline#go(4)
-nmap <Leader>5 <Plug>lightline#bufferline#go(5)
-nmap <Leader>6 <Plug>lightline#bufferline#go(6)
-nmap <Leader>7 <Plug>lightline#bufferline#go(7)
-nmap <Leader>8 <Plug>lightline#bufferline#go(8)
-nmap <Leader>9 <Plug>lightline#bufferline#go(9)
-nmap <Leader>0 <Plug>lightline#bufferline#go(10)
-nmap <Leader>c1 <Plug>lightline#bufferline#delete(1)
-nmap <Leader>c2 <Plug>lightline#bufferline#delete(2)
-nmap <Leader>c3 <Plug>lightline#bufferline#delete(3)
-nmap <Leader>c4 <Plug>lightline#bufferline#delete(4)
-nmap <Leader>c5 <Plug>lightline#bufferline#delete(5)
-nmap <Leader>c6 <Plug>lightline#bufferline#delete(6)
-nmap <Leader>c7 <Plug>lightline#bufferline#delete(7)
-nmap <Leader>c8 <Plug>lightline#bufferline#delete(8)
-nmap <Leader>c9 <Plug>lightline#bufferline#delete(9)
-nmap <Leader>c0 <Plug>lightline#bufferline#delete(10)
-
 " Color Scheme
 syntax enable
 set background=dark
 silent! colorscheme wildcharm
 
-" ====================================================================
-" 9. Finishing Touches
-" ====================================================================
 " Remember cursor position when reopening a file
 if has("autocmd")
     autocmd BufReadPost *
