@@ -15,7 +15,6 @@
     "files.autoSave": "afterDelay",
     "files.hotExit": "onExit",
     "files.trimTrailingWhitespace": true,
-    "workbench.colorTheme": "Solarized Light",
     "workbench.settings.applyToAllProfiles": [
         "editor.fontSize"
     ],
@@ -53,12 +52,12 @@
     "workbench.colorCustomizations": {
         // "editor.lineHighlightBackground": "#2a2a2a",
         // "editor.lineHighlightBorder": "#3a3a3a",
-        "editor.selectionBackground": "#cccccc",
-        "editor.selectionForeground": "#cccccc",
+        // "editor.selectionBackground": "#cccccc",
+        // "editor.selectionForeground": "#cccccc",
         "tree.indentGuidesStroke": "#05ef3c",
         "tree.inactiveIndentGuidesStroke": "#05ef3c30",
     },
-    "workbench.externalBrowser": "chrome",
+    "workbench.externalBrowser": "firefox",
     "workbench.reduceMotion": "on",
 
 
@@ -87,8 +86,9 @@
     "editor.fontLigatures": false,
     "editor.minimap.renderCharacters": false,
     "editor.fontSize": 16,
-    "editor.wordWrap": "on",
-    "editor.wordWrapColumn": 80,
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 81,
+    "editor.wrappingIndent": "same",
     "editor.lineNumbers": "on",
     "editor.guides.indentation": true,
     "editor.guides.bracketPairs": true,
@@ -593,6 +593,10 @@
     "git.enableSmartCommit": false,
     "git.useEditorAsCommitInput": true,
 
+    // ====configuration of cspell====
+    "cSpell.language": "en, zh, cn",
+    "cSpell.diagnosticLevel": "Information", // 拼写提示等级
+
 
     "material-icon-theme.activeIconPack": "angular_ngrx",
     "settingsSync.ignoredExtensions": [
@@ -629,6 +633,21 @@
     "latex-workshop.view.pdf.external.viewer.command": "C:\\Users\\Lenovo\\AppData\\Local\\SumatraPDF\\SumatraPDF.exe",
     "extensions.experimental.affinity": {
         "asvetliakov.vscode-neovim": 1
+    },
+    "workbench.colorTheme": "Solarized Light",
+    "cSpell.enabledSchemes": {
+        "comment": true,
+        "file": true,
+        "gist": true,
+        "repo": true,
+        "sftp": true,
+        "untitled": true,
+        "vscode-notebook-cell": true,
+        "vscode-scm": true,
+        "vscode-userdata": true,
+        "vscode-vfs": true,
+        "vsls": true,
+        "overleaf-workshop": true
     },
 
 
