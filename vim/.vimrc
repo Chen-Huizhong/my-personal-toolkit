@@ -181,6 +181,8 @@ if filereadable(s:plug_path)
         Plug 'easymotion/vim-easymotion'             " Fast navigation
         Plug 'tpope/vim-surround'                    " Edit surroundings (quotes, brackets)
         Plug 'tpope/vim-commentary'                  " Commentary
+        Plug 'preservim/nerdtree'                    " File explorer
+        Plug 'mhinz/vim-signify', { 'tag': 'legacy' } " Show git diff in gutter
         Plug 'Xuyuanp/nerdtree-git-plugin'           " Git status for NERDTree
         Plug 'ryanoasis/vim-devicons'                " File icons
         Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Icon colors
