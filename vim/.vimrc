@@ -106,6 +106,7 @@ set tabline=%!BufNumber()\ %t%m
 " Set Space as Leader
 nnoremap <space> <nop>
 let mapleader = " "
+let g:mapleader = " "
 
 " Disable Ex-mode (prevents accidental Q presses)
 nmap Q <Nop>
@@ -138,17 +139,17 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Fast Exit Insert Mode
-inoremap jj <ESC>l
+inoremap jj <Esc>:normal! l<CR>
 
 " UI & Search Mappings
-nnoremap <Leader>n :nohlsearch<CR>      " Clear search highlight
+nnoremap <Leader>n :nohlsearch<CR>
 
 " Keep search results centered on screen
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-nnoremap <silent> * *zz
-nnoremap <silent> # #zz
-nnoremap <silent> g* g*zz
+nnoremap <silent> n n:normal! zz<CR>
+nnoremap <silent> N N:normal! zz<CR>
+nnoremap <silent> * *:normal! zz<CR>
+nnoremap <silent> # #:normal! zz<CR>
+nnoremap <silent> g* g*:normal! zz<CR>
 
 " Visual Mode: Keep selection after shifting indent
 vnoremap < <gv
@@ -157,6 +158,8 @@ vnoremap > >gv
 " Logical movement: H for start of line, L for end of line
 noremap H ^
 noremap L $
+nnoremap <Leader>, #zz
+nnoremap <Leader>. *zz
 
 " Wrap-aware movements (gj/gk instead of j/k for visual lines)
 nnoremap k gk
@@ -216,7 +219,7 @@ nmap <leader>b <Plug>(easymotion-b)
 "nmap <leader>F <Plug>(easymotion-Fl)
 
 " Lightline Settings
-let g:lightline = { 
+let g:lightline = {
     \ 'colorscheme': 'wombat',
     \ 'tabline': {
     \    'left': [ ['buffers'] ],
