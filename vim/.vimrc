@@ -45,10 +45,7 @@ set colorcolumn=81              " Vertical line at column 81
 set splitright                  " Open new vertical splits to the right
 set splitbelow                  " Open new horizontal splits below
 set list                        " Show invisible characters (tabs, trailing spaces)
-set listchars+=tab:>-
-set listchars+=nbsp:~
-set listchars+=trail:∙
-set listchars+=eol:¶
+set listchars=tab:>-,nbsp:~,trail:∙,eol:¶
 
 " ====================================================================
 " 3. Search & Indentation
@@ -91,12 +88,6 @@ set t_vb=                       " Clear the visual bell terminal string
 set wildmenu                    " Visual command completion
 set wildmode=longest:list,full  " Completion behavior
 set showtabline=2               " Always show tab bar
-
-" Custom tabline showing buffer number and filename
-function! BufNumber()
-    return repeat(' ', strlen(bufnr('$')) - strlen(bufnr())) . bufnr()
-endfunction
-set tabline=%!BufNumber()\ %t%m
 
 " ====================================================================
 " 6. Key Mappings & Leader
@@ -178,10 +169,11 @@ nnoremap ; :
 "
 "     Add your favourite plugs between `call plug#bigin('~/.vim/plugged')` and
 "       `call plug#end()`.
-"
+" ====================================================================
 " Note: To install plugs, execute command `:PlugInstall`.
 " Note: To uninstall plugs, execute command `:PlugClean`.
-let s:plug_path = expand('~/.vim/autoload/plug.vim')
+" ====================================================================
+let s:plug_path = expand('~/.vim/autoload/plug.vim1')
 if filereadable(s:plug_path)
     call plug#begin('~/.vim/plugged')
 
