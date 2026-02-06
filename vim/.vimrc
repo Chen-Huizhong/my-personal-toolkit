@@ -239,7 +239,7 @@ if filereadable(s:plug_path)
     nnoremap <C-t> :NERDTreeToggle<CR>
     " Auto-open NERDTree if Vim starts with a directory
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) &&
-        \ !exists('s:std_in') | \ execute 'NERDTree' argv()[0] | wincmd p | enew |
+        \ !exists('s:std_in') | execute 'NERDTree' argv()[0] | wincmd p | enew |
         \ execute 'cd '.argv()[0] | endif
     " Auto-close Vim if NERDTree is the last window
     autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 &&
@@ -309,7 +309,7 @@ endtry
 " Remember cursor position when reopening a file
 if has("autocmd")
     autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \ if line("'\"") > 1 && line("'\"") <= line("$") |
         \   exe "normal g`\"" |
         \ endif
 endif
