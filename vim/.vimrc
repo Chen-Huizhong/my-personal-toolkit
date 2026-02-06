@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The customized VIM configuration by Huizhong Chen.
 "
-" Last updated: 2026-02-05
+" Last updated: 2026-02-06
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " ====================================================================
@@ -40,12 +40,18 @@ set showcmd                     " Show partial commands in the bottom bar
 set showmode                    " Display the current mode (Normal, Insert, etc.)
 set showmatch                   " Briefly jump to matching brackets/braces
 set matchtime=2                 " Tenths of a second to show the matching bracket
-set t_Co=256                    " Enable 256-color support
+" Enable 256 colors palette in Gnome Terminal
+if $COLORTERM == 'gnome-terminal'
+    set t_Co=256
+endif
 set colorcolumn=81              " Vertical line at column 81
 set splitright                  " Open new vertical splits to the right
 set splitbelow                  " Open new horizontal splits below
 set list                        " Show invisible characters (tabs, trailing spaces)
 set listchars=tab:>-,nbsp:~,trail:∙,eol:¶
+set lazyredraw
+" Add a bit extra margin to the left
+set foldcolumn=1
 
 " ====================================================================
 " 3. Search & Indentation
@@ -82,6 +88,40 @@ set autowrite                   " Auto-save before commands like :next and :make
 set noerrorbells
 set novisualbell
 set t_vb=                       " Clear the visual bell terminal string
+set tm=500
+if has("gui_macvim")
+    autocmd GUIEnter * set vb t_vb=
+endif
+
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc
+if has("win16") || has("win32")
+    set wildignore+=.git\*,.hg\*,.svn\*
+else
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+endif
+
+" Set extra options when running in GUI mode
+if has("gui_running")
+    set guioptions-=T
+    set guioptions-=e
+    set t_Co=256
+    set guitablabel=%M\ %t
+endif
+
+" Delete trailing white space on save, useful for some filetypes ;)
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+" Add specified suffix here.
+if has("autocmd")
+    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee
+        \ :call CleanExtraSpaces()
+endif
 
 " ====================================================================
 " 5. Command Line & Tabline
@@ -122,10 +162,10 @@ inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
 " Window Navigation (Ctrl + h,j,k,l)
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 " Fast Exit Insert Mode
 inoremap jj <Esc>
@@ -140,7 +180,7 @@ nnoremap <silent> g* g*:normal! zz<CR>
 nnoremap <Leader>, #:normal! zz<CR>
 nnoremap <Leader>. *:normal! zz<CR>
 " Quick nohightligh
-nnoremap <Leader>n :nohlsearch<CR>
+nnoremap <silent> <Leader>n :nohlsearch<CR>
 
 " Custom Movement
 noremap H ^
@@ -156,8 +196,9 @@ nnoremap gj j
 vnoremap < <gv
 vnoremap > >gv
 
-" A lazy shortcut
+" Lazy shortcuts
 nnoremap ; :
+nmap <Leader>q :wq<CR>
 
 " ====================================================================
 " 7. Plugin Management (vim-plug) (conditional)
@@ -197,10 +238,12 @@ if filereadable(s:plug_path)
     " NERDTree
     nnoremap <C-t> :NERDTreeToggle<CR>
     " Auto-open NERDTree if Vim starts with a directory
-    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-        \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) &&
+        \ !exists('s:std_in') | \ execute 'NERDTree' argv()[0] | wincmd p | enew |
+        \ execute 'cd '.argv()[0] | endif
     " Auto-close Vim if NERDTree is the last window
-    autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+    autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 &&
+        \ exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
     " EasyMotion
     let g:EasyMotion_smartcase = 1
@@ -258,7 +301,10 @@ endif
 " Color Scheme
 syntax enable
 set background=dark
-silent! colorscheme wildcharm
+try
+    colorscheme wildcharm
+catch
+endtry
 
 " Remember cursor position when reopening a file
 if has("autocmd")
@@ -272,4 +318,3 @@ endif
 if &term =~ '256color'
     set t_ut=
 endif
-
