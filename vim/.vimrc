@@ -145,7 +145,7 @@ nnoremap <Leader>l :bnext<CR>
 nnoremap <Leader>h :bprevious<CR>
 " `<leader> + d` to close current buffer
 " keep window alive and close the buffer
-nnoremap <Leader>d :bdelete<CR>
+nnoremap <silent> <Leader>d :bp<bar>sp<bar>bn<bar>bd<CR>
 " Switch to the last-operated buffer
 nnoremap <Leader>k :b#<CR>
 " List all of the buffers
@@ -267,10 +267,10 @@ if filereadable(s:plug_path)
         \   'buffers': 'tabsel'
         \ },
         \ }
-    let g:lightline#bufferline#show_number=3
-    let g:lightline#bufferline#ordinal_number_map = {
-        \ 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴',
-        \ 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
+    let g:lightline#bufferline#show_number=2
+    " let g:lightline#bufferline#ordinal_number_map = {
+    "     \ 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴',
+    "     \ 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
     let g:lightline#bufferline#unnamed = '[No Name]'
     nmap <Leader>1 <Plug>lightline#bufferline#go(1)
     nmap <Leader>2 <Plug>lightline#bufferline#go(2)
