@@ -126,6 +126,10 @@ if command -v lazygit >/dev/null 2>&1; then
     alias lg="lazygit"
 fi
 
+if command -v less >/dev/null 2>&1; then
+    alias less="less -R"
+fi
+
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#666666,bg=#222222"
 

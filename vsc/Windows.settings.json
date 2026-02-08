@@ -32,7 +32,7 @@
     "workbench.editor.limit.value": 8,
     "workbench.editor.pinnedTabSizing": "compact",
     "workbench.secondarySideBar.defaultVisibility": "hidden",
-    "workbench.activityBar.location": "top",
+    "workbench.activityBar.location": "default",
     "workbench.list.smoothScrolling": false,
     "workbench.tree.renderIndentGuides": "always",
     "workbench.editor.editorActionsLocation": "titleBar",
@@ -49,11 +49,8 @@
     "workbench.editor.tabSizingFixedMaxWidth": 140,
     "workbench.editor.titleScrollbarVisibility": "auto",
     "workbench.editor.labelFormat": "default",
+    "workbench.colorTheme": "Experimental Light",
     "workbench.colorCustomizations": {
-        // "editor.lineHighlightBackground": "#2a2a2a",
-        // "editor.lineHighlightBorder": "#3a3a3a",
-        // "editor.selectionBackground": "#cccccc",
-        // "editor.selectionForeground": "#cccccc",
         "tree.indentGuidesStroke": "#05ef3c",
         "tree.inactiveIndentGuidesStroke": "#05ef3c30",
     },
@@ -634,7 +631,6 @@
     "extensions.experimental.affinity": {
         "asvetliakov.vscode-neovim": 1
     },
-    "workbench.colorTheme": "Solarized Light",
     "cSpell.enabledSchemes": {
         "comment": true,
         "file": true,
