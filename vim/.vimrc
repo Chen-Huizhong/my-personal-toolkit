@@ -152,14 +152,14 @@ nnoremap <Leader>k :b#<CR>
 nnoremap <Leader>j :ls<CR>:echom "Buffer Number: "<CR>:b
 
 " Disable Arrow Keys (Force h,j,k,l habit)
-nnoremap <Left>  :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up>    :echoe "Use k"<CR>
-nnoremap <Down>  :echoe "Use j"<CR>
-inoremap <Left>  <ESC>:echoe "Use h"<CR>
-inoremap <Right> <ESC>:echoe "Use l"<CR>
-inoremap <Up>    <ESC>:echoe "Use k"<CR>
-inoremap <Down>  <ESC>:echoe "Use j"<CR>
+nnoremap <Left>  :echoe "Use your fucking h"<CR>
+nnoremap <Right> :echoe "Use your fucking l"<CR>
+nnoremap <Up>    :echoe "Use your fucking k"<CR>
+nnoremap <Down>  :echoe "Use your fucking j"<CR>
+inoremap <Left>  <ESC>:echoe "Use your fucking h"<CR>
+inoremap <Right> <ESC>:echoe "Use your fucking l"<CR>
+inoremap <Up>    <ESC>:echoe "Use your fucking k"<CR>
+inoremap <Down>  <ESC>:echoe "Use your fucking j"<CR>
 
 " Window Navigation (Ctrl + h,j,k,l)
 map <C-h> <C-w>h
