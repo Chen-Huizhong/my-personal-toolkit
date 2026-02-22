@@ -2,9 +2,10 @@
     // This is my configurations of VSCode for MacOS Enviornment.
     // Note that some extensions are needed.
     // Some paths should be costumized.
-    // by Huizhong Chen, 2025-12-26.
+    // by Huizhong Chen, 2026-02-17.
 
     "telemetry.telemetryLevel": "off",
+    "chat.disableAIFeatures": true,
 
     // ====configuration of security====
     "security.workspace.trust.enabled": false,
@@ -15,7 +16,6 @@
     "files.autoSave": "afterDelay",
     "files.hotExit": "onExit",
     "files.trimTrailingWhitespace": true,
-    "workbench.colorTheme": "Solarized Light",
     "workbench.settings.applyToAllProfiles": [
         "editor.fontSize"
     ],
@@ -33,7 +33,7 @@
     "workbench.editor.limit.value": 8,
     "workbench.editor.pinnedTabSizing": "compact",
     "workbench.secondarySideBar.defaultVisibility": "hidden",
-    "workbench.activityBar.location": "top",
+    "workbench.activityBar.location": "default",
     "workbench.list.smoothScrolling": false,
     "workbench.tree.renderIndentGuides": "always",
     "workbench.editor.editorActionsLocation": "titleBar",
@@ -50,15 +50,12 @@
     "workbench.editor.tabSizingFixedMaxWidth": 140,
     "workbench.editor.titleScrollbarVisibility": "auto",
     "workbench.editor.labelFormat": "default",
+    "workbench.colorTheme": "Default Light Modern",
     "workbench.colorCustomizations": {
-        // "editor.lineHighlightBackground": "#2a2a2a",
-        // "editor.lineHighlightBorder": "#3a3a3a",
-        "editor.selectionBackground": "#cccccc",
-        "editor.selectionForeground": "#cccccc",
         "tree.indentGuidesStroke": "#05ef3c",
         "tree.inactiveIndentGuidesStroke": "#05ef3c30",
     },
-    "workbench.externalBrowser": "chrome",
+    "workbench.externalBrowser": "firefox",
     "workbench.reduceMotion": "on",
 
 
@@ -87,8 +84,9 @@
     "editor.fontLigatures": false,
     "editor.minimap.renderCharacters": false,
     "editor.fontSize": 16,
-    "editor.wordWrap": "on",
-    "editor.wordWrapColumn": 80,
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 81,
+    "editor.wrappingIndent": "same",
     "editor.lineNumbers": "on",
     "editor.guides.indentation": true,
     "editor.guides.bracketPairs": true,
@@ -549,6 +547,8 @@
     "notebook.stickyScroll.mode": "indented",
     "notebook.insertToolbarLocation": "betweenCells",
 
+
+
     // ====configuration of python====
     "python.terminal.activateEnvironment": false,
     "python.createEnvironment.trigger": "off",
@@ -559,8 +559,6 @@
     "python.analysis.diagnosticMode": "workspace",
     "python-envs.terminal.autoActivationType": "off",
     "python-envs.terminal.showActivateButton": false,
-    "python-envs.defaultEnvManager": "ms-python.python:conda",
-    "python-envs.defaultPackageManager": "ms-python.python:conda",
     "python-envs.pythonProjects": [],
     "[python]": {
         "editor.formatOnSave": true,
@@ -590,7 +588,6 @@
     "git.autorefresh": true,
     "git.enableSmartCommit": false,
     "git.useEditorAsCommitInput": true,
-
 
     "material-icon-theme.activeIconPack": "angular_ngrx",
     "settingsSync.ignoredExtensions": [

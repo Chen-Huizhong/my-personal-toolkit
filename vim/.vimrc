@@ -232,6 +232,7 @@ if filereadable(s:plug_path)
         Plug 'jiangmiao/auto-pairs'                  " Auto-close brackets
         Plug 'vim/colorschemes'                      " Collection of colors
         Plug 'mg979/vim-visual-multi', {'branch': 'master'}  " Mult-cursor
+        Plug 'wincent/terminus'
 
     call plug#end()
 
@@ -307,14 +308,25 @@ catch
 endtry
 
 " Remember cursor position when reopening a file
-if has("autocmd")
-    autocmd BufReadPost *
-        \ if line("'\"") > 1 && line("'\"") <= line("$") |
-        \   exe "normal g`\"" |
-        \ endif
-endif
+augroup RestoreCursor
+  autocmd!
+  autocmd BufReadPost *
+    \ let line = line("'\"")
+    \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit'
+    \      && index(['xxd', 'gitrebase'], &filetype) == -1
+    \ |   execute "normal! g`\""
+    \ | endif
+augroup END
 
 " Fix potential background color issues in some terminals
 if &term =~ '256color'
     set t_ut=
 endif
+
+" " cursor style depending on the mode
+" " Insert mode
+" let &t_SI = "\e[6 q"
+" " Normal mode
+" let &t_EI = "\e[2 q"
+" " Replace mode
+" let &t_SR = "\e[4 q"

@@ -590,11 +590,6 @@
     "git.enableSmartCommit": false,
     "git.useEditorAsCommitInput": true,
 
-    // ====configuration of cspell====
-    "cSpell.language": "en, zh, cn",
-    "cSpell.diagnosticLevel": "Information", // 拼写提示等级
-
-
     "material-icon-theme.activeIconPack": "angular_ngrx",
     "settingsSync.ignoredExtensions": [
         "ms-vscode-remote.remote-wsl",
@@ -628,23 +623,5 @@
     "python.defaultInterpreterPath": "c:\\Users\\Lenovo\\miniconda3",
     "latex-workshop.formatting.latexindent.path": "C:\\Users\\Lenovo\\Documents\\latexindent.exe",
     "latex-workshop.view.pdf.external.viewer.command": "C:\\Users\\Lenovo\\AppData\\Local\\SumatraPDF\\SumatraPDF.exe",
-    "extensions.experimental.affinity": {
-        "asvetliakov.vscode-neovim": 1
-    },
-    "cSpell.enabledSchemes": {
-        "comment": true,
-        "file": true,
-        "gist": true,
-        "repo": true,
-        "sftp": true,
-        "untitled": true,
-        "vscode-notebook-cell": true,
-        "vscode-scm": true,
-        "vscode-userdata": true,
-        "vscode-vfs": true,
-        "vsls": true,
-        "overleaf-workshop": true
-    },
-
 
 }

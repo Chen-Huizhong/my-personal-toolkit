@@ -90,7 +90,6 @@ source $ZSH/oh-my-zsh.sh
 # autoload -U compinit && compinit -u
 
 # export MANPATH="/usr/local/man:$MANPATH"
-# export PATH="/opt/miniconda3/bin:$PATH"  # commented out by conda initialize
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -129,6 +128,9 @@ fi
 if command -v less >/dev/null 2>&1; then
     alias less="less -R"
 fi
+
+command -v python >/dev/null 2>&1 || alias python="python3"
+command -v pip >/dev/null 2>&1 || alias pip="pip3"
 
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#666666,bg=#222222"
