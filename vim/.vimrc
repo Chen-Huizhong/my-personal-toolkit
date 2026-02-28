@@ -205,7 +205,7 @@ nmap <Leader>q :wq<CR>
 " ====================================================================
 " Instruction:
 "     Vim-Plug Installation:
-"     1. Download `plug.vim` on 
+"     1. Download `plug.vim` on
 "       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "     2. Put it on the path `~/.vim/autoload/plug.vim`.
 "

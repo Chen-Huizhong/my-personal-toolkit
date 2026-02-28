@@ -182,6 +182,7 @@ const ruleProviders = {
 // 规则
 const rules = [
   // 额外自定义规则       //在此添加你想要的规则
+  "DOMAIN-SUFFIX,fsu.edu,🔗 全局直连",
   // 自定义规则
   "DOMAIN-SUFFIX,mdpi.com,🔗 全局直连",
   // ACS (American Chemical Society)

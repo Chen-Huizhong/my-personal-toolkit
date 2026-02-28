@@ -49,7 +49,7 @@
     "workbench.editor.tabSizingFixedMaxWidth": 140,
     "workbench.editor.titleScrollbarVisibility": "auto",
     "workbench.editor.labelFormat": "default",
-    "workbench.colorTheme": "Experimental Light",
+    "workbench.colorTheme": "Default Light+",
     "workbench.colorCustomizations": {
         "tree.indentGuidesStroke": "#05ef3c",
         "tree.inactiveIndentGuidesStroke": "#05ef3c30",
