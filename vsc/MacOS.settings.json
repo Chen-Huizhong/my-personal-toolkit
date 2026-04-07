@@ -50,7 +50,7 @@
     "workbench.editor.tabSizingFixedMaxWidth": 140,
     "workbench.editor.titleScrollbarVisibility": "auto",
     "workbench.editor.labelFormat": "default",
-    "workbench.colorTheme": "Default Light Modern",
+    "workbench.colorTheme": "Experimental Light",
     "workbench.colorCustomizations": {
         "tree.indentGuidesStroke": "#05ef3c",
         "tree.inactiveIndentGuidesStroke": "#05ef3c30",
@@ -619,6 +619,7 @@
 
     "latex-workshop.formatting.latexindent.path": "/Users/chenhuizhong/Documents/latexindent-macos",
     "MATLAB.installPath": "/Applications/MATLAB_R2023b.app",
+    "terminal.integrated.inheritEnv": false,
 
 
 }
