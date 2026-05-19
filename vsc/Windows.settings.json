@@ -39,7 +39,6 @@
     "workbench.layoutControl.enabled": false,
     "workbench.layoutControl.type": "both",
     "workbench.editor.highlightModifiedTabs": true,
-    "workbench.editor.enablePreview": false,
     "workbench.editor.tabActionLocation": "left",
     "workbench.sideBar.location": "left",
     "workbench.panel.defaultLocation": "bottom",
@@ -60,7 +59,6 @@
     // ====configuration of window====
     "window.titleBarStyle": "custom",
     "window.commandCenter": false,
-    "window.restoreWindows": "none",
     "window.title": "${dirty}${folderPath}${separator}${activeEditorShort}",
 
 

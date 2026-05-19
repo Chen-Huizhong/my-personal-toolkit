@@ -447,9 +447,10 @@ const proxyGroupsConfig = [
   {
     ...groupBaseOption,
     "name": "💸 ChatGPT-Gemini-XAI-Perplexity",
-    "type": "select",
+    "type": "url-test",
     "proxies": ["🔰 模式选择", "⚙️ 节点选择", "🕊️ 落地节点", "🔗 全局直连", "♻️ 延迟选优", "🚑 故障转移", "⚖️ 负载均衡(散列)", "☁️ 负载均衡(轮询)"],
     "include-all": true,
+    "filter": "(?i)美|us|usa|unitedstates|america|洛杉矶|圣何塞|硅谷|西雅图|纽约|芝加哥",
     "exclude-filter": "(?i)港|hk|hongkong|hong kong|俄|ru|russia|澳|macao",
     "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/chatgpt.svg"
   },
@@ -505,7 +506,7 @@ const proxyGroupsConfig = [
     ...groupBaseOption,
     "name": "Ⓜ️ 微软服务",
     "type": "select",
-    "proxies": ["🔰 模式选择", "⚙️ 节点选择", "🕊️ 落地节点", "🔗 全局直连", "♻️ 延迟选优", "🚑 故障转移", "⚖️ 负载均衡(散列)", "☁️ 负载均衡(轮询)"],
+    "proxies": ["♻️ 延迟选优", "🔗 全局直连", "🔰 模式选择", "⚙️ 节点选择", "🕊️ 落地节点", "🚑 故障转移", "⚖️ 负载均衡(散列)", "☁️ 负载均衡(轮询)"],
     "include-all": true,
     "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/microsoft.svg"
   },
