@@ -17,6 +17,7 @@
     "files.hotExit": "onExit",
     "files.trimTrailingWhitespace": true,
     "workbench.settings.applyToAllProfiles": [
+
         "editor.fontSize"
     ],
     "workbench.tips.enabled": false,
@@ -24,9 +25,6 @@
     "workbench.tree.indent": 8,
     "workbench.secondarySideBar.showLabels": true,
     "workbench.startupEditor": "none",
-    "workbench.editorAssociations": {
-        "{hexdiff}:/**/*.*": "hexEditor.hexedit",
-    },
     "workbench.panel.showLabels": false,
     "workbench.iconTheme": "material-icon-theme",
     "workbench.editor.limit.enabled": true,
@@ -36,8 +34,6 @@
     "workbench.activityBar.location": "default",
     "workbench.list.smoothScrolling": false,
     "workbench.tree.renderIndentGuides": "always",
-    "workbench.editor.editorActionsLocation": "titleBar",
-    "workbench.layoutControl.enabled": false,
     "workbench.layoutControl.type": "both",
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.editor.enablePreview": false,
@@ -50,7 +46,7 @@
     "workbench.editor.tabSizingFixedMaxWidth": 140,
     "workbench.editor.titleScrollbarVisibility": "auto",
     "workbench.editor.labelFormat": "default",
-    "workbench.colorTheme": "Experimental Light",
+    "workbench.colorTheme": "Light 2026",
     "workbench.colorCustomizations": {
         "tree.indentGuidesStroke": "#05ef3c",
         "tree.inactiveIndentGuidesStroke": "#05ef3c30",
@@ -620,6 +616,10 @@
     "latex-workshop.formatting.latexindent.path": "/Users/chenhuizhong/Documents/latexindent-macos",
     "MATLAB.installPath": "/Applications/MATLAB_R2023b.app",
     "terminal.integrated.inheritEnv": false,
+    "update.showReleaseNotes": false,
+    "workbench.layoutControl.enabled": false,
+    "workbench.editor.editorActionsLocation": "titleBar",
+    "notebook.outline.showCodeCellSymbols": false,
 
 
 }
